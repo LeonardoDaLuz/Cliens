@@ -1,0 +1,24 @@
+import default_logo_white_background from './svg/cliens-default-logo-white-background.svg';
+import header_logo from './svg/header-logo.svg';
+import background_image from './svg/background_image.svg';
+import login_background from './svg/login_background.svg';
+import login_icon from './svg/login_icon.svg';
+import profile_icon from './svg/profile_icon.svg';
+import cliens_icon from './svg/cliens_icon.svg';
+import key_icon from './svg/key_icon.svg';
+import email_icon from './svg/email_icon.svg';
+
+const assets = {
+    default_logo_white_background,
+    header_logo,
+    background_image,
+    login_background,
+    profile_icon,
+    login_icon,
+    cliens_icon,
+    email_icon,
+    key_icon
+
+}
+
+export default assets;

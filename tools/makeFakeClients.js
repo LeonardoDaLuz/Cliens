@@ -34,7 +34,7 @@ function makeFakeClients(quantity) {
             endereco: {
                 cep: faker.datatype.number(10000000, 99999999),
                 rua: faker.address.streetName(),
-                numero: faker.datatype.number(0, 9999),
+                numero: faker.datatype.number(1000, 9999),
                 bairro: faker.address.address,
                 cidade: faker.address.city(),
             }
