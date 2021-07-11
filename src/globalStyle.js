@@ -86,13 +86,14 @@ export const GlobalStyle = createGlobalStyle`
 
 export const Icon = styled.div`
     flex: 0 0 auto;
-    width: ${({size})=>size};
-    height: ${({size})=>size};
+    width: ${({width})=>width};
+    height: ${({height})=>height};
     background: transparent url(${({src})=>src}) no-repeat center center; 
-    background-size: 70%;
-    filter: drop-shadow(3px 3px 3px rgba(0,0,0,0.4));
+    background-size: contain;
+
     display: inline-block;
     vertical-align: middle;
+    margin-right: 5px;
 `;
 
 export const Button = styled.button`
@@ -101,4 +102,6 @@ export const Button = styled.button`
     border: none;
     border-radius: 5px;
     padding: 0px 15px 0px 15px;
+    font-weight: 600;
+    min-height: 48px;
 `;

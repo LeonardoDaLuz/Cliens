@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import assets from "../../assets";
 import colorTheme from "../../colorTheme";
 
@@ -27,6 +27,12 @@ export const Background = styled.div`
     z-index: -50;
 `;
 
+const fadeIn = keyframes`  
+  from { transform : scale(0); }
+  to { transform : scale(1);  }
+`;
+
+
 export const LoginWindow = styled.main`
     flex: 0 0 580px;
     width: 500px;
@@ -36,6 +42,7 @@ export const LoginWindow = styled.main`
     border-radius: 10px;
     max-width: 100vw;    
     padding: 40px 80px 80px 80px;
+    animation: ${fadeIn} 0.2s;
 
     h1 {
         color: #5F4687;
@@ -45,6 +52,8 @@ export const LoginWindow = styled.main`
         display: block;
         text-align: center;        
     }
+
+    
 `;
 
 export const ProfileIcon = styled.div`

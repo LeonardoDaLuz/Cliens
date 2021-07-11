@@ -42,14 +42,15 @@ export const InputBackground = styled.div`
     border-radius: 5px;
     display: flex;
     height: 50px;
+    align-items: center;
 `;
 
 export const InputIcon = styled.div`
     flex: 0 0 auto;
-    width: 55px;
-    height: 50px;
+    width: 58px;
+    height: 35px;
     background: transparent url(${({icon})=>icon}) no-repeat center center; 
-    background-size: 70%;
+    background-size: contain;
     filter: drop-shadow(3px 3px 3px rgba(0,0,0,0.4));
 
 `;

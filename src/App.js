@@ -9,7 +9,8 @@ import { Topbar } from "./components/TopBar";
 import Login from './components/Login';
 import { GlobalStyle } from "./globalStyle";
 import colorTheme from './colorTheme';
-
+import Listagem from "./components/Listagem";
+import Header from './components/Header';
 function App() {
   return (
     <Router>
@@ -19,7 +20,7 @@ function App() {
           <Login />
         </Route>
         <Route path="/">
-          <Topbar />
+          <Header />
         </Route>
       </Switch>
     </Router>
