@@ -15,6 +15,7 @@ let colorTheme = {
     lightContent: '#846D8E',
     placeholderText: '#AD8FD3',
     textLabelColor: '#846D8E',
+    title: '#5F4687',
   
 }
 

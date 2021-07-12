@@ -6,10 +6,19 @@ import login_icon from './svg/login_icon.svg';
 import profile_icon from './svg/profile_icon.svg';
 import cliens_icon from './svg/cliens_icon.svg';
 import key_icon from './svg/key_icon.svg';
+import delete_icon from './svg/delete_icon.svg';
 import email_icon from './svg/email_icon.svg';
 import search_icon from './svg/search_icon.svg';
 import listagem_icon from './svg/listagem_icon.svg';
 import adicionar_cliente_icon from './svg/adicionar_cliente_icone.svg';
+import edit_icon from './svg/edit_icon.svg';
+import cep_icon from './svg/cep_icon.svg';
+import city_icon from './svg/city_icon.svg';
+import cpf_icon from './svg/cpf_icon.svg';
+import name_icon from './svg/name_icon.svg';
+import bairro_icon from './svg/bairro_icon.svg';
+import number_icon from './svg/number_icon.svg';
+import street_icon from './svg/street_icon.svg';
 
 const assets = {
     default_logo_white_background,
@@ -23,7 +32,16 @@ const assets = {
     key_icon,
     search_icon,
     adicionar_cliente_icon,
-    listagem_icon
+    listagem_icon,
+    delete_icon,
+    edit_icon,
+    name_icon,
+    cep_icon,
+    city_icon,
+    cpf_icon,
+    bairro_icon,
+    number_icon,
+    street_icon
 
 }
 

@@ -95,6 +95,7 @@ export const Icon = styled.div`
     display: inline-block;
     vertical-align: middle;
     margin-right: 7px;
+    margin-left: 7px;
     ${({ shadow }) => (shadow ? ' filter: drop-shadow(0px 3px 3px rgba(0,0,0,0.9))' : '')}
     
 `;
@@ -105,8 +106,22 @@ export const Button = styled.button`
     border: none;
     border-radius: 5px;
     padding: 0px 15px 0px 15px;
-    font-weight: 600;
-    min-height: 48px;
+    font-weight: 600;    
+    text-align: center;
+    box-shadow: 0px 5px 0px  ${colorTheme.subtlePrimary.darken(0.3)}, 0px 5px 5px rgba(0,0,0,0.3);
+    
+    &:hover {
+        background-color: ${colorTheme.subtlePrimary.lighten(0.05)};
+    }
+
+    &:active {
+        transform: translateY(3px);
+        box-shadow: 0px 2px 0px  ${colorTheme.subtlePrimary.darken(0.3)},
+        0px 5px 5px  rgba(0,0,0,0.3)        ;
+
+    }
+
+
 `;
 
 export const LabeledLink = styled(Link)`

@@ -36,11 +36,11 @@ function MenuBlock() {
                 <Icon src={assets.adicionar_cliente_icon} width='20px' height='20px' />
                 Adicionar
             </Link>
-            <Link to='/adicionar' style={{zIndex: 1}}>
+            <Link to='/listagem' style={{zIndex: 1}}>
                 <Icon src={assets.listagem_icon} width='20px' height='20px' />
                 listagem
             </Link>
-            <Link to='/adicionar' style={{zIndex: 0}}>
+            <Link to='/sair' style={{zIndex: 0}}>
                 <Icon src={assets.login_icon} width='20px' height='20px' />
                 Sair
             </Link>

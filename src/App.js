@@ -10,6 +10,7 @@ import Login from './components/Login';
 import { GlobalStyle } from "./globalStyle";
 import colorTheme from './colorTheme';
 import Listagem from "./components/Listagem";
+import EditarCliente from "./components/EditarCliente";
 import Header from './components/Header';
 
 function App() {
@@ -23,7 +24,13 @@ function App() {
         <Route path="/">
           <Header />
           <Switch>
-            <Route path="/">
+            <Route path="/editar">
+              <EditarCliente />
+            </Route>
+            <Route path="/adicionar">
+              <EditarCliente />
+            </Route>
+            <Route path="/clientes">
               <Listagem />
             </Route>
           </Switch>

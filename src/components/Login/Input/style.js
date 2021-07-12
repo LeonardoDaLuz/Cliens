@@ -53,6 +53,8 @@ export const InputIcon = styled.div`
     background-size: contain;
     filter: drop-shadow(3px 3px 3px rgba(0,0,0,0.4));
 
+    
+
 `;
 
 
