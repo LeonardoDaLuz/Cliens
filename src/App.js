@@ -11,6 +11,7 @@ import { GlobalStyle } from "./globalStyle";
 import colorTheme from './colorTheme';
 import Listagem from "./components/Listagem";
 import Header from './components/Header';
+
 function App() {
   return (
     <Router>
@@ -21,8 +22,14 @@ function App() {
         </Route>
         <Route path="/">
           <Header />
+          <Switch>
+            <Route path="/">
+              <Listagem />
+            </Route>
+          </Switch>
         </Route>
       </Switch>
+
     </Router>
   );
 }

@@ -1,5 +1,6 @@
-import styled , { createGlobalStyle } from 'styled-components'
+import styled, { createGlobalStyle } from 'styled-components'
 import colorTheme from './colorTheme';
+import { Link } from 'react-router-dom';
 
 export const GlobalStyle = createGlobalStyle`
 
@@ -14,6 +15,7 @@ export const GlobalStyle = createGlobalStyle`
         line-height: 1.5;
         color: #212529;
         text-align: left;
+        overflow-x: hidden;
     }
 
     *, *::before, *::after {
@@ -86,14 +88,15 @@ export const GlobalStyle = createGlobalStyle`
 
 export const Icon = styled.div`
     flex: 0 0 auto;
-    width: ${({width})=>width};
-    height: ${({height})=>height};
-    background: transparent url(${({src})=>src}) no-repeat center center; 
+    width: ${({ width }) => width};
+    height: ${({ height }) => height};
+    background: transparent url(${({ src }) => src}) no-repeat center center; 
     background-size: contain;
-
     display: inline-block;
     vertical-align: middle;
-    margin-right: 5px;
+    margin-right: 7px;
+    ${({ shadow }) => (shadow ? ' filter: drop-shadow(0px 3px 3px rgba(0,0,0,0.9))' : '')}
+    
 `;
 
 export const Button = styled.button`
@@ -104,4 +107,19 @@ export const Button = styled.button`
     padding: 0px 15px 0px 15px;
     font-weight: 600;
     min-height: 48px;
+`;
+
+export const LabeledLink = styled(Link)`
+    background: transparent url(${({ icon }) => (icon)}) no-repeat left center;
+    background-size: ${({ iconSize }) => (iconSize ? iconSize : 'contain')};
+    padding-left: ${({ iconSize }) => (iconSize ? (parseInt(iconSize) + 10) + 'px' : '30px')}; 
+    margin-left: 0px;
+
+
+`;
+
+export const Container = styled.div`
+    width: 100%;
+    max-width: 1140px;
+    margin: 0 auto;
 `;
