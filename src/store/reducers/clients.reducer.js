@@ -1,34 +1,46 @@
 import {
     CLIENT_SEARCH_START,
     CLIENT_SEARCH_SUCCESS,
-    CLIENT_SEARCH_FAILURE
+    CLIENT_SEARCH_FAILURE,
+    CLIENT_SEARCH_POINTER_RESET
 } from '../types'
 import produce from 'immer';
 
 const initialState = {
     status: 'idle',
     pointer: 0,
-    lastPath: '',
-    data: {}
-
+    lastKey: '',
+    data: {},
+    searchCompleted: false,
 }
 
 const clients = produce((draft, action) => {
     switch (action.type) {
         case CLIENT_SEARCH_START:
             draft.status = 'loading';
-            break; 
+            break;
         case CLIENT_SEARCH_SUCCESS:
             draft.status = 'loaded';
+
             if (draft.data[action.key])
                 draft.data[action.key].splice(action.pointer, action.payload.length, ...action.payload);
             else
                 draft.data[action.key] = action.payload;
 
+            if (action.payload.length < action.quantity)
+                draft.searchCompleted = true;
+            else
+                draft.searchCompleted = false;
+
+            draft.lastKey = action.key;
+
             draft.pointer = action.pointer + action.payload.length;
             break;
         case CLIENT_SEARCH_FAILURE:
             draft.status = 'fail';
+            break;
+        case CLIENT_SEARCH_POINTER_RESET:
+            draft.searchCompleted = false;
             break;
     }
 }, initialState);

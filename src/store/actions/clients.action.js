@@ -5,6 +5,7 @@ import {
     CLIENT_SEARCH_POINTER_RESET
 } from '../types';
 import config from '../../config';
+import { mergePathWithQueryAndQuery } from '../../utils/mergePathWithQueryAndQuery';
 
 export const resetSearchCounter = () => {
     return (dispatch) => {
@@ -15,20 +16,25 @@ export const resetSearchCounter = () => {
 export const loadMoreClients = (path, query = '', quantity = 12) => {
     return async (dispatch, getState) => {
 
-        let pointer = getState().clients.pointer;
-        query = query.replace('?', ''); //caso receba interrogação, remover, para normalizar essa query caso veja com interrogação.
-        path = path.replace('?', ''); //caso receba interrogação, remover, para normalizar essa query caso veja com interrogação.
+        let clients = getState().clients;        
 
+        let pointer = clients.pointer;        
 
-        const url = config.apiUrl + path + '?' + query + '&_start=' + pointer + '&_limit=' + quantity;
+        let pathWithQuery = mergePathWithQueryAndQuery(path, query);
+
+        if(pathWithQuery!==clients.lastKey)
+            pointer = 0;
+
+        const url = config.apiUrl + mergePathWithQueryAndQuery(pathWithQuery, '&_start=' + pointer + '&_limit=' + quantity);
 
         dispatch({ type: CLIENT_SEARCH_START, url });
 
         await fetch(url)
             .then(body => body.json())
-            .then(data => dispatch({ type: CLIENT_SEARCH_SUCCESS, payload: data, pointer, key: path + '?' + query }))
+            .then(data => dispatch({ type: CLIENT_SEARCH_SUCCESS, payload: data, url, pointer, key: pathWithQuery, quantity }))
             .catch(error => dispatch({ type: CLIENT_SEARCH_FAILURE, error }))
 
 
     }
 }
+

@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import colorTheme from "../../colorTheme";
+import { LoaderWheel as LoaderWheel_ } from "../../globalStyle";
 
 export const ListagemStyles = styled.div`
 
@@ -15,6 +16,8 @@ export const ListagemStyles = styled.div`
     span {
         vertical-align: middle;
     }
+
+    padding-bottom: 100px;
 `;
 
 export const Table_ = styled.table`
@@ -23,7 +26,7 @@ export const Table_ = styled.table`
     overflow: hidden;
     border-radius: 5px;
     box-shadow:  0px 4px 4px rgba(0,0,0,0.4);
-
+    background-color: white;
     thead {
         background-color: ${colorTheme.secondary.darken(0.1)};
         box-shadow:  0px 3px 5px rgba(0,0,0,0.4);
@@ -58,7 +61,28 @@ export const Table_ = styled.table`
     }
 
     tbody {
-        background-color: white;
+
         padding: 15px;
     }
+
+    tfoot {
+        text-align: center;
+    }
+`;
+
+export const BottomLeftLoaderWheel = styled(LoaderWheel_)`
+    display: block;
+    position: fixed;
+    left: 15px;
+    bottom: 15px;
+    margin: 5px 5px;
+    background-color: ${colorTheme.tertiary};
+    border-radius: 50%;
+    background-size: 80%;
+`;
+
+export const TableLoaderWheel = styled(LoaderWheel_)`
+    margin: 5px 5px;
+    border-radius: 50%;
+    background-size: 80%;
 `;

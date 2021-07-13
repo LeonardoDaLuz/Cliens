@@ -1,6 +1,7 @@
-import styled, { createGlobalStyle } from 'styled-components'
+import styled, { createGlobalStyle, keyframes } from 'styled-components'
 import colorTheme from './colorTheme';
 import { Link } from 'react-router-dom';
+import assets from './assets';
 
 export const GlobalStyle = createGlobalStyle`
 
@@ -138,3 +139,20 @@ export const Container = styled.div`
     max-width: 1140px;
     margin: 0 auto;
 `;
+
+const spin = keyframes`
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+`;
+
+
+export const LoaderWheel = styled.div`
+    display: inline-block;
+    vertical-align: middle;
+    width: 45px;
+    height: 45px;
+    background: transparent url(${assets.update_icon}) no-repeat center center;
+    background-size: contain;
+    animation: ${spin} 0.5s linear infinite;
+`;
+
