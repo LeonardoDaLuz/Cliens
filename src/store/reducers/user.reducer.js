@@ -1,8 +1,4 @@
-import {
-    LOGIN_START,
-    LOGIN_SUCCESS,
-    LOGIN_FAILURE
-} from '../types'
+import actionTypes from '../types'
 
 
 const initialState = {
@@ -12,11 +8,11 @@ const initialState = {
 
 const user = (state = initialState, action) => {
     switch(action.type) {
-        case LOGIN_START:
+        case actionTypes.LOGIN_START:
             break;
-        case LOGIN_SUCCESS:
+        case actionTypes.LOGIN_SUCCESS:
             break;
-        case LOGIN_FAILURE:
+        case actionTypes.LOGIN_FAILURE:
             break;
     }
 

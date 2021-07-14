@@ -1,9 +1,4 @@
-import {
-    CLIENT_SEARCH_START,
-    CLIENT_SEARCH_SUCCESS,
-    CLIENT_SEARCH_FAILURE,
-    CLIENT_SEARCH_POINTER_RESET
-} from '../types'
+import actionTypes from '../types'
 import produce from 'immer';
 
 const initialState = {
@@ -16,10 +11,10 @@ const initialState = {
 
 const clients = produce((draft, action) => {
     switch (action.type) {
-        case CLIENT_SEARCH_START:
+        case actionTypes.CLIENT_SEARCH_START:
             draft.status = 'loading';
             break;
-        case CLIENT_SEARCH_SUCCESS:
+        case actionTypes.CLIENT_SEARCH_SUCCESS:
             draft.status = 'loaded';
 
             if (draft.data[action.key])
@@ -36,10 +31,10 @@ const clients = produce((draft, action) => {
 
             draft.pointer = action.pointer + action.payload.length;
             break;
-        case CLIENT_SEARCH_FAILURE:
+        case actionTypes.CLIENT_SEARCH_FAILURE:
             draft.status = 'fail';
             break;
-        case CLIENT_SEARCH_POINTER_RESET:
+        case actionTypes.CLIENT_SEARCH_POINTER_RESET:
             draft.searchCompleted = false;
             break;
     }

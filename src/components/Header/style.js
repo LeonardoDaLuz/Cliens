@@ -2,13 +2,10 @@ import styled from "styled-components";
 import colorTheme from "../../colorTheme";
 import assets from "../../assets";
 
-export const HeaderStyles = styled.div`
+export const HeaderContainer = styled.div`
     display: flex;
     justify-content: center;
-
-
 `;
-
 
 export const SkewBlock = styled.div`
     position: relative;
@@ -29,7 +26,7 @@ export const SkewBlock = styled.div`
 
 `;
 
-export const LogoBlock_ = styled(SkewBlock)`
+export const LogoContainer = styled(SkewBlock)`
     flex: 0.2 0 200px;
     margin-left: -20px;
     padding-left: 40px;
@@ -40,7 +37,7 @@ export const LogoBlock_ = styled(SkewBlock)`
     }
 `;
 
-export const SearchBlock_ = styled(SkewBlock)`
+export const SearchContainer = styled(SkewBlock)`
     flex: 1 1 400px;
     display: flex;
     height: 50px;
@@ -72,7 +69,7 @@ export const SearchBlock_ = styled(SkewBlock)`
     }
 `;
 
-export const MenuBlock_ = styled(SkewBlock)`
+export const MenuContainer = styled(SkewBlock)`
     flex: 1 1 400px;
     margin-right: -30px;
     padding-right: 30px;

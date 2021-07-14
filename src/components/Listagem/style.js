@@ -2,7 +2,7 @@ import styled from "styled-components";
 import colorTheme from "../../colorTheme";
 import { LoaderWheel as LoaderWheel_ } from "../../globalStyle";
 
-export const ListagemStyles = styled.div`
+export const ListagemContainer = styled.div`
 
 
 
@@ -20,7 +20,7 @@ export const ListagemStyles = styled.div`
     padding-bottom: 100px;
 `;
 
-export const Table_ = styled.table`
+export const TableContainer = styled.table`
     width: 100%;
     border-spacing: 0;
     overflow: hidden;

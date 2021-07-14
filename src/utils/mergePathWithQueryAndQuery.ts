@@ -1,4 +1,4 @@
-export function mergePathWithQueryAndQuery(path, query) {
+export function mergePathWithQueryAndQuery(path: string, query: string): string {
     if (!query || query === '' || query === '?') {
         return path.replace('?', '');
     }
@@ -7,5 +7,5 @@ export function mergePathWithQueryAndQuery(path, query) {
 
     let newPath = path + (path.includes('?') ? '&' : '?') + filteredQuery;
 
-    return newPath;
+    return newPath; 
 }
