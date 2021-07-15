@@ -1,6 +1,16 @@
 import { InputStyles, InputBackground, InputIcon } from "./style";
 
-export default function Input({ type, value, placeholder, name, id, label, icon }) {
+interface props {
+    type: string;
+    value: string;
+    placeholder: string;
+    name: string;
+    id: string;
+    label: string;
+    icon: string;
+}
+
+export default function Input({ type, value, placeholder, name, id, label, icon }: props): JSX.Element {
     return (
 
         <InputStyles>
