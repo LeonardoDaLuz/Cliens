@@ -4,8 +4,6 @@ import { LoaderWheel as LoaderWheel_ } from "../../globalStyle";
 
 export const ListagemContainer = styled.div`
 
-
-
     h1 {
         color: white;
         margin: 25px 0px 25px 0px;
@@ -76,6 +74,14 @@ export const BottomLeftLoaderWheel = styled(LoaderWheel_)`
     left: 15px;
     bottom: 15px;
     margin: 5px 5px;
+    background-color: ${colorTheme.tertiary};
+    border-radius: 50%;
+    background-size: 80%;
+`;
+
+export const LoaderWheelInTheTitle = styled(LoaderWheel_)`
+    display: inline-block;
+    margin: 0px 20px;
     background-color: ${colorTheme.tertiary};
     border-radius: 50%;
     background-size: 80%;
