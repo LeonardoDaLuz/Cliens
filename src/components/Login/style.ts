@@ -40,7 +40,7 @@ export const LoginWindow = styled.main`
     background: white;
     box-shadow: 0px 3px 5px rgb(0,0,0,0.4);
     border-radius: 10px;
-    max-width: 100vw;    
+    max-width: 100vw;
     padding: 40px 80px 80px 80px;
     animation: ${fadeIn} 0.2s;
 

@@ -8,7 +8,7 @@ export const BeautifulInputStyles = styled.div`
 label {
         display: block;
         font-weight: bold;
-        color: ${colorTheme.textLabelColor};
+        color: ${colorTheme.darkPrimary};
         line-height: 48px;
         text-shadow: 0px 3px 3px rgba(0,0,0,0.3);
     }
@@ -45,7 +45,10 @@ export const InputBackground = styled.div`
     align-items: center;
 `;
 
-export const InputIcon = styled.div`
+interface InputIconProps {
+    icon: string
+}
+export const InputIcon = styled.div<InputIconProps>`
     flex: 0 0 auto;
     width: 58px;
     height: 35px;

@@ -39,33 +39,38 @@ export const LogoContainer = styled(SkewBlock)`
 
 export const SearchContainer = styled(SkewBlock)`
     flex: 1 1 400px;
-    display: flex;
-    height: 50px;
-    z-index: 4;
+
     &:before {
         background-color: ${colorTheme.secondary};
 
     }
 
-    button {
-        flex: 0 1 60px;
-        border: none;
-        background: transparent url(${assets.search_icon}) no-repeat center center;
-        background-size: 65%;
-    }
+    form {
 
-    input {
-        flex: 1 1 40px;
-        border: none;
-        background-color: ${colorTheme.secondary.darken(0.15)};
-        margin: 5px;
-        border-radius: 20px;
-        padding: 5px 18px 5px 18px;
-        font-weight: 600;
-        color: white;
-        font-size: 17px;
-        letter-spacing: 1px;
-        outline: none;
+        display: flex;
+        height: 50px;
+        z-index: 4;
+
+        button {
+            flex: 0 1 60px;
+            border: none;
+            background: transparent url(${assets.search_icon}) no-repeat center center;
+            background-size: 65%;
+        }
+
+        input {
+            flex: 1 1 40px;
+            border: none;
+            background-color: ${colorTheme.secondary.darken(0.15)};
+            margin: 5px;
+            border-radius: 20px;
+            padding: 5px 18px 5px 18px;
+            font-weight: 600;
+            color: white;
+            font-size: 17px;
+            letter-spacing: 1px;
+            outline: none;
+        }
     }
 `;
 

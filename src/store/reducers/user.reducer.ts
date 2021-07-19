@@ -1,12 +1,12 @@
-import actionTypes from '../types'
+import actionTypes from '../actionTypes'
+import { UserState, UserAction } from '../types/user.types';
 
-
-const initialState = {
+const initialState: UserState = {
     loginStatus : 'not logged'
 
 }
 
-const user = (state = initialState, action) => {
+const user = (state = initialState, action: UserAction) => {
     switch(action.type) {
         case actionTypes.LOGIN_START:
             break;
@@ -18,5 +18,6 @@ const user = (state = initialState, action) => {
 
     return state;
 }
+
 
 export default user;

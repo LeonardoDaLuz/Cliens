@@ -22,26 +22,69 @@ type clientsStore = {
 }
 
 type props = {
-    clients: clientsStore;
+    clientsState: clientsStore;
     loadMoreClients: Function;
     resetSearchCounter: Function;
 }
 
 
 
-function Listagem({ clients, loadMoreClients, resetSearchCounter, location }: props & RouteComponentProps) {
+function Listagem({ clientsState, loadMoreClients, resetSearchCounter, location }: props & RouteComponentProps) {
 
     let path = location.pathname;
     let query = location.search;
 
-    const clientListTableRef = useRef<HTMLElement>(null);
+    const clientListTableRef = useRef<HTMLDivElement>(null);
 
-    let holdInfiniteLoader = true;
+
 
 
 
     useEffect(() => {
-        //loadMoreClients(path, query, 3);
+
+        let holdInfiniteLoader = true;
+        
+        async function infiniteLoaderStart() {
+
+            console.log('infiniteLoaderStart')
+    
+            let tries = 3;
+    
+            let current = clientListTableRef.current;
+    
+            while (current && current.clientHeight < window.innerHeight && tries > 0) { //Faz com que mais produtos sejam carregados até que preencha a tela toda.
+                console.log('aki');
+                tries--;
+                await loadMoreClients(path, query, 30); //Aqui, o location.pathname é usado pois este path é usado na especificação da busca na api.
+            }
+    
+    
+            while (holdInfiniteLoader) {
+    
+                if (window.pageYOffset > document.body.clientHeight - window.innerHeight - 4000 && tries > 0) {
+    
+                    let clientHeightBefore = document.body.clientHeight;
+    
+                    await loadMoreClients(path, query, 30);
+    
+                    await loadMoreClients(path, query, 30);
+    
+                    await loadMoreClients(path, query, 30);
+    
+                    if(clientHeightBefore===document.body.clientHeight) {
+                        holdInfiniteLoader=false;
+                    }
+    
+                } else {
+                    await waitForSeconds(0.1);
+                }
+            }
+        }
+    
+        function desligaInfiniteLoader() {
+            console.log('desligaInfiniteLoader')
+            holdInfiniteLoader = false;
+        }
 
         infiniteLoaderStart();
 
@@ -49,50 +92,27 @@ function Listagem({ clients, loadMoreClients, resetSearchCounter, location }: pr
 
     }, [location.pathname, location.search]);
 
-    async function infiniteLoaderStart() {
+   
 
-        let tries = 5;
-
-        let current = clientListTableRef.current;
-
-        while (current && current.clientHeight < window.innerHeight && tries > 0) { //Faz com que mais produtos sejam carregados até que preencha a tela toda.
-
-            tries--;
-            await loadMoreClients(path, query, 30); //Aqui, o location.pathname é usado pois este path é usado na especificação da busca na api.
-        }
-
-        while (holdInfiniteLoader) {
-
-            if (window.pageYOffset > document.body.clientHeight - window.innerHeight - 1200) {
-                await loadMoreClients(path, query, 30);
-            } else {
-                await waitForSeconds(0.1);
-            }
-        }
-    }
-
-    function desligaInfiniteLoader() {
-        holdInfiniteLoader = false;
-    }
-
-    let selectedClients = clients.data[mergePathWithQueryAndQuery(path, query)];
+    let selectedClients = clientsState.data[mergePathWithQueryAndQuery(path, query)];
 
     // let showTopLeftLoaderWheel = clients.status === 'loading' && window.pageYOffset < document.body.clientHeight -500;
     //           <button onClick={(e) => { e.preventDefault(); loadMoreClients(path, query, 3) }}></button>
     return (
         <ListagemContainer>
             {
-                clients.status === 'loading' && !clients.searchCompleted && <BottomLeftLoaderWheel />
+                clientsState.status === 'loading' && !clientsState.searchCompleted && <BottomLeftLoaderWheel />
             }
             <Container ref={clientListTableRef}>
                 {JSON.stringify(location)}
+                searchCompleted: {JSON.stringify(clientsState.searchCompleted)}
                 <h1>
                     <Icon src={assets.listagem_icon} width='50px' height='50px' />
                     <span>Listagem</span>
 
                 </h1>
 
-                <Table lista={selectedClients} status={clients.status} searchCompleted={clients.searchCompleted} />
+                <Table lista={selectedClients} status={clientsState.status} searchCompleted={clientsState.searchCompleted} />
 
             </Container>
         </ListagemContainer>
@@ -101,7 +121,7 @@ function Listagem({ clients, loadMoreClients, resetSearchCounter, location }: pr
 }
 
 const mapStateToProps = (store: any) => ({
-    clients: store.clients
+    clientsState: store.clients
 });
 
 const mapDispatchToProps = (dispatch: any) =>

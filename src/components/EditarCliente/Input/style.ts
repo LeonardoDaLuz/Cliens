@@ -11,7 +11,7 @@ export const InputStyles = styled.div`
     label {
             display: block;
             font-weight: bold;
-            color: ${colorTheme.primaryText};
+            color: ${colorTheme.darkPrimary};
             line-height: 48px;
             text-shadow: 0px 3px 3px rgba(0,0,0,0.3);
     }
@@ -45,16 +45,18 @@ export const InputBackground = styled.div`
     align-items: center;
 `;
 
-export const InputIcon = styled.div`
+interface InputIconProps {
+    icon: string;
+}
+
+export const InputIcon = styled.div<InputIconProps>`
     flex: 0 0 auto;
     width: 35px;
     height: 35px;
     margin: 0px 10px 0px 10px;
-    background: transparent url(${({ icon }) => icon}) no-repeat center center; 
+    background: transparent url(${(p) => p.icon}) no-repeat center center; 
     background-size: contain;
-    filter: drop-shadow(3px 3px 3px rgba(0,0,0,0.4));
-
-    
+    filter: drop-shadow(3px 3px 3px rgba(0,0,0,0.4));   
 
 `;
 

@@ -87,17 +87,23 @@ export const GlobalStyle = createGlobalStyle`
     }
 `;
 
-export const Icon = styled.div`
+interface IconProps {
+    width: string;
+    height: string;
+    src: string;
+    shadow?: boolean;
+}
+export const Icon = styled.div<IconProps>`
     flex: 0 0 auto;
-    width: ${({ width }) => width};
-    height: ${({ height }) => height};
-    background: transparent url(${({ src }) => src}) no-repeat center center; 
+    width: ${(p: IconProps) => p.width};
+    height: ${(p: IconProps) => p.height};
+    background: transparent url(${({ src = '' }) => src}) no-repeat center center; 
     background-size: contain;
     display: inline-block;
     vertical-align: middle;
     margin-right: 7px;
     margin-left: 7px;
-    ${({ shadow }) => (shadow ? ' filter: drop-shadow(0px 3px 3px rgba(0,0,0,0.9))' : '')}
+    ${(p: IconProps) => (p.shadow ? ' filter: drop-shadow(0px 3px 3px rgba(0,0,0,0.9))' : '')}
     
 `;
 
@@ -125,13 +131,16 @@ export const Button = styled.button`
 
 `;
 
-export const LabeledLink = styled(Link)`
-    background: transparent url(${({ icon }) => (icon)}) no-repeat left center;
-    background-size: ${({ iconSize }) => (iconSize ? iconSize : 'contain')};
-    padding-left: ${({ iconSize }) => (iconSize ? (parseInt(iconSize) + 10) + 'px' : '30px')}; 
+interface LabeledLinkProps {
+    icon: string;
+    iconSize: number;
+}
+
+export const LabeledLink = styled(Link)<LabeledLinkProps>`
+    background: transparent url(${(p: LabeledLinkProps) => (p.icon)}) no-repeat left center;
+    background-size: ${(p: LabeledLinkProps) => (p.iconSize ? p.iconSize : 'contain')};
+    padding-left: ${(p: LabeledLinkProps ) => (p.iconSize ? (p.iconSize + 10) + 'px' : '30px')}; 
     margin-left: 0px;
-
-
 `;
 
 export const Container = styled.div`
