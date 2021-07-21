@@ -9,10 +9,18 @@ const initialState: ClientsState = {
     lastKey: '',
     data: {},
     searchCompleted: false,
+    holdInfiniteLoader: false,
 }
 
 const clients = produce((draft, action: ClientsAction) => {
     switch (action.type) {
+        case actionTypes.INFINITE_CLIENT_LOADER_START:
+            draft.holdInfiniteLoader = true;
+            draft.searchCompleted = false;
+            break;
+        case actionTypes.INFINITE_CLIENT_LOADER_STOP:
+            draft.holdInfiniteLoader = false;
+            break;
         case actionTypes.CLIENT_SEARCH_START:
             draft.status = 'loading';
             draft.lastKey = action.key;

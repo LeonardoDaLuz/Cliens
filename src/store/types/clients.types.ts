@@ -6,6 +6,7 @@ export type ClientsState = {
     readonly lastKey: string,
     readonly data: { [key: string]: Client[] },
     readonly searchCompleted: boolean,
+    readonly holdInfiniteLoader: boolean,
 }
 
 

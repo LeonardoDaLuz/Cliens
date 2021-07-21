@@ -1,11 +1,11 @@
-import { ListagemContainer, BottomLeftLoaderWheel, TableLoaderWheel, LoaderWheelInTheTitle } from "./style";
+import { ListagemContainer, BottomLeftLoaderWheel, TableLoaderWheel, LoaderWheelInTheTitle, TableContainer } from "./style";
 import { Button, Container, Icon } from "../../globalStyle";
 import assets from "../../assets";
 import { formatCPF } from "../../utils/formatCpf";
 import { useEffect } from "react";
 import store from "../../store";
 import { bindActionCreators } from "redux";
-import { loadMoreClients, resetSearchCounter } from "../../store/actions/clients.action";
+import { loadMoreClients, resetSearchCounter, infiniteClientLoaderStart, infiniteClientLoaderStop } from "../../store/actions/clients.action";
 import { connect } from "react-redux";
 import { withRouter, RouteComponentProps } from "react-router";
 import { mergePathWithQueryAndQuery } from "../../utils/mergePathWithQueryAndQuery";
@@ -25,78 +25,37 @@ type props = {
     clientsState: clientsStore;
     loadMoreClients: Function;
     resetSearchCounter: Function;
+    infiniteClientLoaderStart:  Function;
+    infiniteClientLoaderStop: () => void;
 }
 
 
 
-function Listagem({ clientsState, loadMoreClients, resetSearchCounter, location }: props & RouteComponentProps) {
+function Listagem({ clientsState, loadMoreClients, resetSearchCounter, infiniteClientLoaderStart, infiniteClientLoaderStop , location }: props & RouteComponentProps) {
 
     let path = location.pathname;
     let query = location.search;
 
     const clientListTableRef = useRef<HTMLDivElement>(null);
     const loaderWheelinBottomLeftRef = useRef<HTMLDivElement>(null);
-    const loaderWheelInTheTitleRef = useRef<HTMLDivElement>(null);
+    const loaderWheelInTheTitleRef = useRef<HTMLDivElement>(null); 
 
+    
+    useEffect(()=> {
+
+        infiniteClientLoaderStart(path, query, 30);
+
+        return infiniteClientLoaderStop;
+
+    }, []);
+
+/*
     useEffect(() => {
-
-        let holdInfiniteLoader = true;
-
-        async function infiniteLoaderStart() {
-
-            console.log('infiniteLoaderStart')
-
-            let tries = 3;
-
-            let current = clientListTableRef.current;
-
-            while (current && current.clientHeight < window.innerHeight && tries > 0) { //Faz com que mais produtos sejam carregados até que preencha a tela toda.
-                console.log('aki');
-                tries--;
-                await loadMoreClients(path, query, 30); //Aqui, o location.pathname é usado pois este path é usado na especificação da busca na api.
-            }
-
-
-            while (holdInfiniteLoader) {
-
-                if (window.pageYOffset > document.body.clientHeight - window.innerHeight - 4000 && tries > 0) {
-
-                    let clientHeightBefore = document.body.clientHeight;
-
-                    await loadMoreClients(path, query, 30);
-
-                    await loadMoreClients(path, query, 30);
-
-                    await loadMoreClients(path, query, 30);
-
-                    if (clientHeightBefore === document.body.clientHeight) {
-                        holdInfiniteLoader = false;
-                    }
-
-                } else {
-                    await waitForSeconds(0.1);
-                }
-            }
-
-            let wheelBottomLeft = loaderWheelinBottomLeftRef.current;
-            alert('cabou');
-            if (wheelBottomLeft) {
-                wheelBottomLeft.setAttribute('style', "display: none;");
-                alert('foi');
-            }
-        }
-
-        function desligaInfiniteLoader() {
-            console.log('desligaInfiniteLoader')
-            holdInfiniteLoader = false;
-        }
-
-        infiniteLoaderStart();
 
         return desligaInfiniteLoader;
 
-    }, [path, query]);
-
+    }, [path, query, clientsState]);
+*/
 
     let selectedClients = clientsState.data[mergePathWithQueryAndQuery(path, query)];
 
@@ -129,7 +88,7 @@ const mapStateToProps = (store: any) => ({
 });
 
 const mapDispatchToProps = (dispatch: any) =>
-    bindActionCreators({ loadMoreClients, resetSearchCounter }, dispatch);
+    bindActionCreators({ loadMoreClients, resetSearchCounter, infiniteClientLoaderStart, infiniteClientLoaderStop }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Listagem));
 
