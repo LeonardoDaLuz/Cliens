@@ -21,6 +21,8 @@ export const infiniteClientLoaderStart = (path = '', query = '', quantity = 30) 
 
         dispatch({ type: actionTypes.INFINITE_CLIENT_LOADER_START, path, query, quantity });
 
+        await waitForSeconds(0.1);
+        
         let clientsState = getState().clients;
 
         while (clientsState.holdInfiniteLoader) {

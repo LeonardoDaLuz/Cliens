@@ -1,17 +1,11 @@
 import React from "react";
-import { ClientsState } from '../../store/types/clients.types';
 import { ApplicationState } from '../../store';
 import { LoaderWheelInTheTitle_ } from './style';
-import { connect } from "react-redux";
+import { connect, ConnectedProps } from "react-redux";
 
-interface props {
-    clientsState?: ClientsState,
-}
+function LoaderWheelInThetitle({ clientsState }: ConnectedProps<typeof connector>) {
 
-
-function LoaderWheelInThetitle({ clientsState }: props): JSX.Element {
-
-    if (!clientsState!.loadCompleted) {
+    if (!clientsState.loadCompleted && clientsState.status != "loaded") {
         return (
             <LoaderWheelInTheTitle_>
 
@@ -26,5 +20,7 @@ const mapStateToProps = (store: ApplicationState) => ({
     clientsState: store.clients
 });
 
+const connector = connect(mapStateToProps, {});
 
-export default connect(mapStateToProps, null)(LoaderWheelInThetitle);
+
+export default connector(LoaderWheelInThetitle);

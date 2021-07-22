@@ -29,9 +29,6 @@ function Listagem({ clientsState, infiniteClientLoaderStart, infiniteClientLoade
     const path = location.pathname;
     const query = location.search;
 
-    const loaderWheelInTheTitleRef = useRef<HTMLDivElement>(null);
-
-
     useEffect(() => {
 
         infiniteClientLoaderStart(location.pathname, location.search, 30);
