@@ -1,81 +1,68 @@
-import { ListagemContainer, BottomLeftLoaderWheel, TableLoaderWheel, LoaderWheelInTheTitle, TableContainer } from "./style";
-import { Button, Container, Icon } from "../../globalStyle";
+import React from 'react';
+import { ListagemContainer, BottomLeftLoaderWheel } from "./style";
+import { Container, Icon } from "../../globalStyle";
 import assets from "../../assets";
-import { formatCPF } from "../../utils/formatCpf";
 import { useEffect } from "react";
-import store from "../../store";
 import { bindActionCreators } from "redux";
-import { loadMoreClients, resetSearchCounter, infiniteClientLoaderStart, infiniteClientLoaderStop } from "../../store/actions/clients.action";
+import { infiniteClientLoaderStart, infiniteClientLoaderStop, setClientLoadPathAndQuery } from "../../store/actions/clients.action";
 import { connect } from "react-redux";
 import { withRouter, RouteComponentProps } from "react-router";
 import { mergePathWithQueryAndQuery } from "../../utils/mergePathWithQueryAndQuery";
-import { waitForSeconds } from "../../utils/waitForSeconds";
 import { useRef } from "react";
 import Table from "./table";
-
-type clientsStore = {
-    status: string,
-    pointer: Number,
-    lastKey: string,
-    data: { [key: string]: [] },
-    searchCompleted: boolean,
-}
+import { ApplicationState } from '../../store'
+import { ClientsState } from '../../store/types/clients.types'
+import LoaderWheelInTheBottom from './LoaderWheelInTheBottom';
+import LoaderWheelInTheTitle from './LoaderWheelInTheTitle';
 
 type props = {
-    clientsState: clientsStore;
-    loadMoreClients: Function;
-    resetSearchCounter: Function;
-    infiniteClientLoaderStart:  Function;
+    clientsState: ClientsState;
+    infiniteClientLoaderStart: typeof infiniteClientLoaderStart;
     infiniteClientLoaderStop: () => void;
+    setClientLoadPathAndQuery: typeof setClientLoadPathAndQuery;
 }
 
 
 
-function Listagem({ clientsState, loadMoreClients, resetSearchCounter, infiniteClientLoaderStart, infiniteClientLoaderStop , location }: props & RouteComponentProps) {
+function Listagem({ clientsState, infiniteClientLoaderStart, infiniteClientLoaderStop, setClientLoadPathAndQuery, location }: props & RouteComponentProps) {
 
-    let path = location.pathname;
-    let query = location.search;
+    const path = location.pathname;
+    const query = location.search;
 
-    const clientListTableRef = useRef<HTMLDivElement>(null);
-    const loaderWheelinBottomLeftRef = useRef<HTMLDivElement>(null);
-    const loaderWheelInTheTitleRef = useRef<HTMLDivElement>(null); 
+    const loaderWheelInTheTitleRef = useRef<HTMLDivElement>(null);
 
-    
-    useEffect(()=> {
 
-        infiniteClientLoaderStart(path, query, 30);
+    useEffect(() => {
+
+        infiniteClientLoaderStart(location.pathname, location.search, 30);
 
         return infiniteClientLoaderStop;
 
     }, []);
 
-/*
+
     useEffect(() => {
 
-        return desligaInfiniteLoader;
+        setClientLoadPathAndQuery(path, query);
 
-    }, [path, query, clientsState]);
-*/
-
-    let selectedClients = clientsState.data[mergePathWithQueryAndQuery(path, query)];
+    }, [path, query, setClientLoadPathAndQuery]);
 
 
-    //clientsState.status === 'loading' && !clientsState.searchCompleted 
+    const selectedClients = clientsState.data[mergePathWithQueryAndQuery(path, query)];
 
     return (
         <ListagemContainer>
-            <BottomLeftLoaderWheel ref={loaderWheelinBottomLeftRef} />
-            <Container ref={clientListTableRef}>
-                {JSON.stringify(location)}
-                searchCompleted: {JSON.stringify(clientsState.searchCompleted)}
+            <LoaderWheelInTheBottom />
+            <Container>              
+             
                 <h1>
                     <Icon src={assets.listagem_icon} width='50px' height='50px' />
                     <span>Listagem</span>
-                    <LoaderWheelInTheTitle ref={loaderWheelInTheTitleRef} />
+                    <LoaderWheelInTheTitle />
 
                 </h1>
 
-                <Table lista={selectedClients} status={clientsState.status} searchCompleted={clientsState.searchCompleted} />
+                <Table lista={selectedClients} status={clientsState.status} loadCompleted={clientsState.loadCompleted} />
 
             </Container>
         </ListagemContainer>
@@ -83,12 +70,12 @@ function Listagem({ clientsState, loadMoreClients, resetSearchCounter, infiniteC
     );
 }
 
-const mapStateToProps = (store: any) => ({
+const mapStateToProps = (store: ApplicationState) => ({
     clientsState: store.clients
 });
 
 const mapDispatchToProps = (dispatch: any) =>
-    bindActionCreators({ loadMoreClients, resetSearchCounter, infiniteClientLoaderStart, infiniteClientLoaderStop }, dispatch);
+    bindActionCreators({ infiniteClientLoaderStart, infiniteClientLoaderStop, setClientLoadPathAndQuery }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Listagem));
 

@@ -1,4 +1,5 @@
 
+import React from "react";
 import { LoginPage, Background, LoginWindow, ProfileIcon } from "./style";
 import Input from "./Input";
 import assets from "../../assets";

@@ -5,8 +5,13 @@ export type ClientsState = {
     readonly pointer: number,
     readonly lastKey: string,
     readonly data: { [key: string]: Client[] },
-    readonly searchCompleted: boolean,
+    readonly loadCompleted: boolean,
     readonly holdInfiniteLoader: boolean,
+    readonly currentPath: string,
+    readonly currentQuery: string,
+    readonly currentKey: string,
+    readonly currentUrl: string,
+    readonly currentQuantity: number
 }
 
 
@@ -16,7 +21,9 @@ export interface ClientsAction extends Action {
     pointer: number,
     quantity: number,
     url: string,
-    error?: any
+    error?: any,
+    path?: string,
+    query?: string,
 }
 
 export interface Client {
@@ -31,4 +38,4 @@ export interface Client {
     }
 }
 
-export type ClientsRequestResponse = Client[] |  {}; //Como estamos usando json server não há um padrao esquematizado de resposta.
+export type ClientsRequestResponse = Client[] | {}; //Como estamos usando json server não há um padrao esquematizado de resposta.

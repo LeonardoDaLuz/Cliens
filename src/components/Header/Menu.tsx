@@ -1,3 +1,4 @@
+import React from "react";
 import { MenuContainer } from "./style";
 import { Icon } from "../../globalStyle";
 import assets from "../../assets";

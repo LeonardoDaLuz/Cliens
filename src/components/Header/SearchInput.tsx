@@ -1,12 +1,12 @@
 import { SearchContainer } from "./style";
 import { useHistory } from "react-router-dom";
 import React, { useState } from "react";
-import { resetSearchCounter } from "../../store/actions/clients.action";
+import { setClientLoadPathAndQuery } from "../../store/actions/clients.action";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 
 const mapDispatchToProps = (dispatch: any) =>
-    bindActionCreators({ resetSearchCounter }, dispatch);
+    bindActionCreators({ setClientLoadPathAndQuery }, dispatch);
 
 function SearchInput_ () {
 
@@ -16,7 +16,7 @@ function SearchInput_ () {
 
     function onSubmit(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault()
-        resetSearchCounter(); history.push('/clientes?q=' + state);
+        history.push('/clientes?q=' + state);
     }
 
     return (

@@ -2,21 +2,36 @@ import actionTypes from '../actionTypes'
 import produce from 'immer';
 import { Action } from 'redux';
 import { ClientsState, ClientsAction, Client } from '../types/clients.types';
+import { mergePathWithQueryAndQuery } from '../../utils/mergePathWithQueryAndQuery';
+import config from '../../config';
 
 const initialState: ClientsState = {
     status: 'idle',
     pointer: 0,
     lastKey: '',
     data: {},
-    searchCompleted: false,
+    loadCompleted: false,
     holdInfiniteLoader: false,
+    currentPath: '',
+    currentQuery: '',
+    currentKey: '',
+    currentUrl: '',
+    currentQuantity: 30,
 }
 
 const clients = produce((draft, action: ClientsAction) => {
     switch (action.type) {
         case actionTypes.INFINITE_CLIENT_LOADER_START:
+        case actionTypes.SET_CLIENT_LOAD_PATH_AND_QUERY:
             draft.holdInfiniteLoader = true;
-            draft.searchCompleted = false;
+            draft.loadCompleted = false;
+            draft.currentPath = action.path!;
+            draft.currentQuery = action.query!;
+            draft.pointer = 0;
+            draft.currentQuantity = action.quantity ? action.quantity : draft.currentQuantity;
+            draft.currentKey = mergePathWithQueryAndQuery(action.path!, action.query!);
+            draft.currentUrl = config.apiUrl + mergePathWithQueryAndQuery(draft.currentKey!, '&_start=' + draft.pointer + '&_limit=' + draft.currentQuantity);
+
             break;
         case actionTypes.INFINITE_CLIENT_LOADER_STOP:
             draft.holdInfiniteLoader = false;
@@ -24,7 +39,7 @@ const clients = produce((draft, action: ClientsAction) => {
         case actionTypes.CLIENT_SEARCH_START:
             draft.status = 'loading';
             draft.lastKey = action.key;
-            draft.searchCompleted = false;
+            draft.currentUrl = config.apiUrl + mergePathWithQueryAndQuery(draft.currentKey!, '&_start=' + draft.pointer + '&_limit=' + draft.currentQuantity);
             break;
         case actionTypes.CLIENT_SEARCH_SUCCESS:
 
@@ -37,9 +52,9 @@ const clients = produce((draft, action: ClientsAction) => {
 
 
             if (draft.lastKey === action.key && action.payload.length < action.quantity)
-                draft.searchCompleted = true;
+                draft.loadCompleted = true;
             else
-                draft.searchCompleted = false;
+                draft.loadCompleted = false;
 
             draft.lastKey = action.key;
 
@@ -49,8 +64,8 @@ const clients = produce((draft, action: ClientsAction) => {
         case actionTypes.CLIENT_SEARCH_FAILURE:
             draft.status = 'fail';
             break;
-        case actionTypes.CLIENT_SEARCH_POINTER_RESET:
-            draft.searchCompleted = false;
+        case actionTypes.CLIENT_LOAD_POINTER_RESET:
+            draft.loadCompleted = false;
             break;
     }
 }, initialState);

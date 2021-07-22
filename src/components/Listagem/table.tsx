@@ -1,18 +1,19 @@
+import React from "react";
 import { TableContainer, TableLoaderWheel } from "./style";
 import { Button, Container, Icon } from "../../globalStyle";
 import assets from "../../assets";
 import { formatCPF } from "../../utils/formatCpf";
-
+import { Client } from '../../store/types/clients.types';
 
 
 interface props {
-    lista: [] | 'not found',
-    status: string,
-    searchCompleted: boolean
+    lista: Client[],
+    loadCompleted: boolean,
+    status: string
 }
 
 
-export default function Table({ lista, status, searchCompleted }: props) {
+export default function Table({ lista, loadCompleted, status }: props): JSX.Element {
 
     return (
         <TableContainer>
@@ -26,9 +27,9 @@ export default function Table({ lista, status, searchCompleted }: props) {
                 </tr>
             </thead>
             <tbody>
-                {lista && lista !== 'not found' && lista.map((item: any, index: Number) => {
+                {lista && lista.map((item: Client, index: number) => {
                     return (
-                        <tr>
+                        <tr key={index}>
                             <td>{index} - {item["nome"]}</td>
                             <td>{formatCPF(item["cpf"])} </td>
                             <td>{item["email"].toLocaleLowerCase()} </td>
@@ -49,10 +50,10 @@ export default function Table({ lista, status, searchCompleted }: props) {
             <tfoot>
                 <td colSpan={5}>
                     {
-                        !searchCompleted && <TableLoaderWheel />
+                        !loadCompleted && <TableLoaderWheel />
                     }
                     {
-                        searchCompleted && <span>Pesquisa concluída</span>
+                        loadCompleted && <span>Pesquisa concluída</span>
                     }
                 </td>
             </tfoot>

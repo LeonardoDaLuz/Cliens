@@ -1,3 +1,4 @@
+import React from "react";
 import { BeautifulInputStyles, InputBackground, InputIcon } from "./style";
 
 interface props {

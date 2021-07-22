@@ -2,7 +2,7 @@ import Color from 'color';
 
 
 
-let colorTheme = {
+const colorTheme = {
     primary: Color('#7E3BB2'),
     primaryText: Color('#FFF'),
     subtlePrimary: Color('#8861BA'),

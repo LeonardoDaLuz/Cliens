@@ -1,3 +1,4 @@
+import React from "react";
 import { EditarStyles,  CenterButtons } from "./style";
 import { Button, Container, Icon } from "../../globalStyle";
 import assets from "../../assets";

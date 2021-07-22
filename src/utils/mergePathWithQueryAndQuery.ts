@@ -3,9 +3,9 @@ export function mergePathWithQueryAndQuery(path: string, query: string): string 
         return path.replace('?', '');
     }
 
-    let filteredQuery = query.charAt(0) === '&' || query.charAt(0) === '?' ? query.substring(1) : query;
+    const filteredQuery = query.charAt(0) === '&' || query.charAt(0) === '?' ? query.substring(1) : query;
 
-    let newPath = path + (path.includes('?') ? '&' : '?') + filteredQuery;
+    const newPath = path + (path.includes('?') ? '&' : '?') + filteredQuery;
 
     return newPath; 
 }

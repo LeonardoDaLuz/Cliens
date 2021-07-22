@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import colorTheme from "../../colorTheme";
-import { LoaderWheel as LoaderWheel_ } from "../../globalStyle";
+import { LoaderWheel } from "../../globalStyle";
 
 export const ListagemContainer = styled.div`
 
@@ -68,7 +68,7 @@ export const TableContainer = styled.table`
     }
 `;
 
-export const BottomLeftLoaderWheel = styled(LoaderWheel_)`
+export const BottomLeftLoaderWheel = styled(LoaderWheel)`
     display: block;
     position: fixed;
     left: 15px;
@@ -79,7 +79,7 @@ export const BottomLeftLoaderWheel = styled(LoaderWheel_)`
     background-size: 80%;
 `;
 
-export const LoaderWheelInTheTitle = styled(LoaderWheel_)`
+export const LoaderWheelInTheTitle_ = styled(LoaderWheel)`
     display: inline-block;
     margin: 0px 20px;
     background-color: ${colorTheme.tertiary};
@@ -87,7 +87,7 @@ export const LoaderWheelInTheTitle = styled(LoaderWheel_)`
     background-size: 80%;
 `;
 
-export const TableLoaderWheel = styled(LoaderWheel_)`
+export const TableLoaderWheel = styled(LoaderWheel)`
     margin: 5px 5px;
     border-radius: 50%;
     background-size: 80%;

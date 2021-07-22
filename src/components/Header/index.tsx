@@ -1,3 +1,4 @@
+import React from "react";
 import { HeaderContainer, LogoContainer } from "./style";
 import { Icon } from "../../globalStyle";
 import assets from "../../assets";
@@ -15,5 +16,5 @@ export default function Header() {
         </HeaderContainer>
 
     );
-};
+}
 

@@ -9,6 +9,7 @@ import { GlobalStyle } from "./globalStyle";
 import Listagem from "./components/Listagem";
 import EditarCliente from "./components/EditarCliente";
 import Header from './components/Header';
+import React from "react";
 
 function App() {
   return (
