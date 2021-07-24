@@ -1,6 +1,7 @@
 import styled, { keyframes } from "styled-components";
 import assets from "../../assets";
 import colorTheme from "../../colorTheme";
+import { Button, LoaderWheel } from "../../globalStyle";
 
 
 export const LoginPage = styled.div`
@@ -56,12 +57,38 @@ export const LoginWindow = styled.main`
     
 `;
 
+export const LoginWheel = styled(LoaderWheel)`
+    width: 100px;
+    height: 100px;
+    display: block;
+    margin: 0 auto;
+    margin-top: 75px;
+
+
+
+`;
 export const ProfileIcon = styled.div`
     width: 135px;
     height: 135px;
     background: transparent url(${assets.profile_icon}) no-repeat center center;
     background-size: contain;
     margin: 0 auto;
+`;
+
+export const LoginError = styled.div`
+    display: block;
+    text-align: center;
+    color: ${colorTheme.inputError.lighten(0.4)};
+    line-height: 48px;
+    font-weight: 600;
+    height: 48px;
+
+`;
+
+export const LoginButton = styled(Button)`
+    width: 100%;
+    padding: 5px;
+
 `;
 
 

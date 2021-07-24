@@ -9,6 +9,8 @@ export const ListagemContainer = styled.div`
         margin: 25px 0px 25px 0px;
         vertical-align: center;
         filter: drop-shadow(0px 3px 3px rgba(0,0,0,0.9));
+        display: inline-block;
+        flex: 1 0 auto;
     }
 
     span {
@@ -18,6 +20,13 @@ export const ListagemContainer = styled.div`
     padding-bottom: 100px;
 `;
 
+export const SearchDetail = styled.div`
+    display: inline-block;
+    color: white;
+    margin-left: 10px;
+    font-weight: 600;
+`;
+
 export const TableContainer = styled.table`
     width: 100%;
     border-spacing: 0;
@@ -25,6 +34,7 @@ export const TableContainer = styled.table`
     border-radius: 5px;
     box-shadow:  0px 4px 4px rgba(0,0,0,0.4);
     background-color: white;
+     border-collapse: collapse;
     thead {
         background-color: ${colorTheme.secondary.darken(0.1)};
         box-shadow:  0px 3px 5px rgba(0,0,0,0.4);
@@ -53,6 +63,8 @@ export const TableContainer = styled.table`
         }
     }
 
+
+
     tr:last-child>td {
         padding-bottom: 20px;
 
@@ -61,6 +73,21 @@ export const TableContainer = styled.table`
     tbody {
 
         padding: 15px;
+
+        tr:nth-child(2n) {
+
+            td {
+                padding: 0px;
+            }
+
+            hr {         
+                margin: 0px;
+                border: none;
+                border-bottom: 1px solid ${colorTheme.secondary.lighten(0.1)};
+            }
+        }
+
+
     }
 
     tfoot {
@@ -85,6 +112,18 @@ export const LoaderWheelInTheTitle_ = styled(LoaderWheel)`
     background-color: ${colorTheme.tertiary};
     border-radius: 50%;
     background-size: 80%;
+    flex: 0 0 auto;
+
+    &.move-to-bottom {
+        position: fixed;
+        display: block;
+        left: 10px;
+        bottom: 25px;
+    }
+
+    &.hidden {        
+        display: none!important;
+    }
 `;
 
 export const TableLoaderWheel = styled(LoaderWheel)`

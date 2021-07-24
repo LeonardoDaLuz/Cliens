@@ -22,12 +22,12 @@ export const infiniteClientLoaderStart = (path = '', query = '', quantity = 30) 
         dispatch({ type: actionTypes.INFINITE_CLIENT_LOADER_START, path, query, quantity });
 
         await waitForSeconds(0.1);
-        
+
         let clientsState = getState().clients;
 
         while (clientsState.holdInfiniteLoader) {
 
-            if (!clientsState.loadCompleted && window.pageYOffset > document.body.clientHeight - window.innerHeight - 1000) {
+            if (clientsState.reloadTrigger || (!clientsState.loadCompleted && window.pageYOffset > document.body.clientHeight - window.innerHeight - 1000)) {
                 await loadMoreClients(clientsState.currentPath, clientsState.currentQuery, 30)(dispatch, getState);
             } else {
                 await waitForSeconds(0.1);

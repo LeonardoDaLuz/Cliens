@@ -116,13 +116,14 @@ export const Button = styled.button`
     font-weight: 600;    
     text-align: center;
     box-shadow: 0px 5px 0px  ${colorTheme.subtlePrimary.darken(0.3)}, 0px 5px 5px rgba(0,0,0,0.3);
-    
+    transform: translateY(-3px);
+
     &:hover {
         background-color: ${colorTheme.subtlePrimary.lighten(0.05)};
     }
 
     &:active {
-        transform: translateY(3px);
+        transform: translateY(0px);
         box-shadow: 0px 2px 0px  ${colorTheme.subtlePrimary.darken(0.3)},
         0px 5px 5px  rgba(0,0,0,0.3)        ;
 
@@ -165,3 +166,7 @@ export const LoaderWheel = styled.div`
     animation: ${spin} 0.5s linear infinite;
 `;
 
+export const Flex = styled.div`
+    display: flex;
+    align-items: center;
+`;

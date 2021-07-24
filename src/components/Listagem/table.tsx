@@ -23,26 +23,29 @@ export default function Table({ lista, loadCompleted, status }: props): JSX.Elem
                     <th>CPF</th>
                     <th>E-mail</th>
                     <th>Cidade</th>
-                    <th style={{width: '140px'}}>Opções </th>
+                    <th style={{ width: '140px' }}>Opções </th>
                 </tr>
             </thead>
             <tbody>
                 {lista && lista.map((item: Client, index: number) => {
                     return (
-                        <tr key={index}>
-                            <td>{index} - {item["nome"]}</td>
-                            <td>{formatCPF(item["cpf"])} </td>
-                            <td>{item["email"].toLocaleLowerCase()} </td>
-                            <td>{item["endereco"]['cidade']} </td>
-                            <td width='140px'>
-                                <Button>
-                                    <Icon src={assets.edit_icon} height='16px' width='16px' />
-                                </Button>
-                                <Button>
-                                    <Icon src={assets.delete_icon} height='16px' width='16px' />
-                                </Button>
-                            </td>
-                        </tr>
+                        <>
+                            <tr key={index}>
+                                <td>{index} - {item["nome"]}</td>
+                                <td>{formatCPF(item["cpf"])} </td>
+                                <td>{item["email"].toLocaleLowerCase()} </td>
+                                <td>{item["endereco"]['cidade']} </td>
+                                <td width='140px'>
+                                    <Button>
+                                        <Icon src={assets.edit_icon} height='16px' width='16px' />
+                                    </Button>
+                                    <Button>
+                                        <Icon src={assets.delete_icon} height='16px' width='16px' />
+                                    </Button>
+                                </td>
+                            </tr>
+                            <tr><td colSpan={5}><hr></hr></td></tr>
+                        </>
                     );
                 })}
 

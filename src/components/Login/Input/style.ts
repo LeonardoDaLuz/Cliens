@@ -6,7 +6,7 @@ import colorTheme from "../../../colorTheme";
 export const BeautifulInputStyles = styled.div`
 
 label {
-        display: block;
+        display: inline-block;
         font-weight: bold;
         color: ${colorTheme.darkPrimary};
         line-height: 48px;
@@ -21,7 +21,7 @@ input {
 
    font-weight: bold;
 
-    color: ${colorTheme.placeholderText};
+    color: ${colorTheme.primary.lighten(0.3)};
     background-color: transparent;
     font-smooth: 2em;
     /* background: ${colorTheme.subtleSecondary} url(${assets.email_icon}) no-repeat 3% 50%; */
@@ -54,9 +54,16 @@ export const InputIcon = styled.div<InputIconProps>`
     height: 35px;
     background: transparent url(${({icon})=>icon}) no-repeat center center; 
     background-size: contain;
-    filter: drop-shadow(3px 3px 3px rgba(0,0,0,0.4));
+    filter: drop-shadow(3px 3px 3px rgba(0,0,0,0.4));   
 
-    
+`;
+
+export const ErrorLabel = styled.span`
+    text-align: center;
+    color: ${colorTheme.inputError.lighten(0.4)};
+    font-weight: 600;   
+    line-height: 48px;
+    margin: 0px 8px;
 
 `;
 

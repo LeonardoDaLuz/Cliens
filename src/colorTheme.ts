@@ -18,6 +18,7 @@ const colorTheme = {
     placeholderText: Color('#AD8FD3'),
     textLabelColor: Color('#846D8E'),
     title: Color('#5F4687'),
+    inputError: Color('#992277'),
 }
 
 

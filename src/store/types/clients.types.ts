@@ -11,7 +11,8 @@ export type ClientsState = {
     readonly currentQuery: string,
     readonly currentKey: string,
     readonly currentUrl: string,
-    readonly currentQuantity: number
+    readonly currentQuantity: number,
+    readonly reloadTrigger: boolean;
 }
 
 

@@ -1,6 +1,6 @@
 import React from 'react';
-import { ListagemContainer, BottomLeftLoaderWheel } from "./style";
-import { Container, Icon } from "../../globalStyle";
+import { ListagemContainer, BottomLeftLoaderWheel, SearchDetail } from "./style";
+import { Container, Icon, Flex } from "../../globalStyle";
 import assets from "../../assets";
 import { useEffect } from "react";
 import { bindActionCreators } from "redux";
@@ -29,6 +29,7 @@ function Listagem({ clientsState, infiniteClientLoaderStart, infiniteClientLoade
     const path = location.pathname;
     const query = location.search;
 
+
     useEffect(() => {
 
         infiniteClientLoaderStart(location.pathname, location.search, 30);
@@ -47,17 +48,25 @@ function Listagem({ clientsState, infiniteClientLoaderStart, infiniteClientLoade
 
     const selectedClients = clientsState.data[mergePathWithQueryAndQuery(path, query)];
 
+    const searchedText = query.startsWith('?q=') ? query.replace('?q=', '') : '';
+
     return (
         <ListagemContainer>
-            <LoaderWheelInTheBottom />
-            <Container>              
-             
-                <h1>
-                    <Icon src={assets.listagem_icon} width='50px' height='50px' />
-                    <span>Listagem</span>
+           
+            <Container>
+                <div>
+                    <h1>
+                        <Icon src={assets.listagem_icon} width='50px' height='50px' />
+                        <span>Listagem</span>
+ 
+                    </h1>
                     <LoaderWheelInTheTitle />
-
-                </h1>
+                    {searchedText &&
+                        <SearchDetail>
+                            <span>Busca para: {searchedText}</span>
+                        </SearchDetail>
+                    }
+                </div>
 
                 <Table lista={selectedClients} status={clientsState.status} loadCompleted={clientsState.loadCompleted} />
 

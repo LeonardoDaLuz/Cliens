@@ -1,24 +1,30 @@
-import React from "react";
-import { BeautifulInputStyles, InputBackground, InputIcon } from "./style";
+import React, { ChangeEventHandler } from "react";
+import { BeautifulInputStyles, InputBackground, InputIcon, ErrorLabel } from "./style";
 
 interface props {
     type: string,
-    value: string,
-    placeholder: string,
     name: string,
-    id: string,
     label: string,
-    icon: string
+    icon: string,
+    placeholder?: string,
+    formik: any
 }
-export default function Input({ type, value, placeholder, name, id, label, icon }: props) {
+
+export default function Input({ type, name, label, icon, formik, placeholder }: props) {
     return (
 
         <BeautifulInputStyles>
-            <label htmlFor={id}>{label}</label>
+            <label htmlFor={name}>{label}</label>
+            {formik.errors[name] ? <ErrorLabel>({formik.errors[name]})</ErrorLabel> : null}
             <InputBackground>
                 <InputIcon icon={icon}></InputIcon>
-                <input type={type} name={name} id={id} placeholder={placeholder} value={value} />
+                <input
+                    type={type}
+                    {...formik.getFieldProps(name)}
+                    placeholder={placeholder}
+                />
             </InputBackground>
+
 
         </BeautifulInputStyles>
 

@@ -17,6 +17,7 @@ const initialState: ClientsState = {
     currentKey: '',
     currentUrl: '',
     currentQuantity: 30,
+    reloadTrigger: false,
 }
 
 const clients = produce((draft, action: ClientsAction) => {
@@ -27,6 +28,7 @@ const clients = produce((draft, action: ClientsAction) => {
             draft.loadCompleted = false;
             draft.pointer = 0;
             draft.currentQuantity = action.quantity ? action.quantity : draft.currentQuantity;
+            draft.reloadTrigger = true;
             if (action.path && action.query !== undefined) {
                 draft.currentPath = action.path;
                 draft.currentQuery = action.query;
@@ -41,6 +43,7 @@ const clients = produce((draft, action: ClientsAction) => {
             draft.holdInfiniteLoader = false;
             break;
         case actionTypes.CLIENT_SEARCH_START:
+            draft.reloadTrigger = false;
             draft.status = 'loading';
             draft.lastKey = action.key;
             draft.currentUrl = config.apiUrl + mergePathWithQueryAndQuery(draft.currentKey, '&_start=' + draft.pointer + '&_limit=' + draft.currentQuantity);
