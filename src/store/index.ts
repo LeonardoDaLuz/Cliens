@@ -1,25 +1,22 @@
-import { createStore, applyMiddleware, compose } from 'redux';
-import thunk from 'redux-thunk';
-import rootReducer from './reducers';
-import { ClientsState } from './types/clients.types';
-import { UserState } from './types/user.types';
+import { Action, configureStore, ThunkAction } from '@reduxjs/toolkit'
+import { useDispatch } from 'react-redux';
+import userReducer from './user';
+import customerReducer from './customers';
 
-declare global {
-  interface Window {
-    devToolsExtension?: typeof compose;
+const store = configureStore({
+  reducer: {
+    user: userReducer,
+    customers: customerReducer,
   }
-}
+});
 
-export interface ApplicationState {
-  clients: ClientsState;
-  user: UserState;
-}
 
-const store = createStore(rootReducer, {}, compose(applyMiddleware(thunk), window.devToolsExtension ? window.devToolsExtension() : (f: any) => f));
+export type RootState = ReturnType<typeof store.getState>
 
-export type DispatchType = typeof store.dispatch;
+export type AppDispatch = typeof store.dispatch;
+
+export const useAppDispatch = () => useDispatch<AppDispatch>();
+
+export type AppThunk = ThunkAction<void, RootState, null, Action<string>>;
 
 export default store;
-
-
-

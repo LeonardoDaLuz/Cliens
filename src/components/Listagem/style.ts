@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import assets from "../../assets";
 import colorTheme from "../../colorTheme";
 import { LoaderWheel } from "../../globalStyle";
 
@@ -108,16 +109,17 @@ export const BottomLeftLoaderWheel = styled(LoaderWheel)`
 
 export const LoaderWheelInTheTitle_ = styled(LoaderWheel)`
     display: inline-block;
-    margin: 0px 20px;
+    margin: 5px 10px;
+    padding: 0px;
     background-color: ${colorTheme.tertiary};
+    background-image: url(${assets.update_icon_2});
     border-radius: 50%;
-    background-size: 80%;
     flex: 0 0 auto;
 
     &.move-to-bottom {
         position: fixed;
         display: block;
-        left: 10px;
+        left: 25px;
         bottom: 25px;
     }
 
@@ -127,7 +129,7 @@ export const LoaderWheelInTheTitle_ = styled(LoaderWheel)`
 `;
 
 export const TableLoaderWheel = styled(LoaderWheel)`
-    margin: 5px 5px;
+
     border-radius: 50%;
     background-size: 80%;
 `;

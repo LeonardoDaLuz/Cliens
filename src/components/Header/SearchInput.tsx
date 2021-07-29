@@ -1,19 +1,15 @@
 import { SearchContainer } from "./style";
 import { useHistory } from "react-router-dom";
 import React, { useState } from "react";
-import { setClientLoadPathAndQuery } from "../../store/actions/clients.action";
-import { bindActionCreators } from "redux";
-import { connect } from "react-redux";
+import { useAppDispatch } from "../../store/hooks";
 
 
-const mapDispatchToProps = (dispatch: any) =>
-    bindActionCreators({ setClientLoadPathAndQuery }, dispatch);
-
-function SearchInput_() {
+export default function SearchInput() {
 
     const [state, setState] = useState<string>();
     const [timeoutId, setTimeoutId] = useState<any>(-1);
 
+    const dispatch = useAppDispatch();
     const history = useHistory();
 
     function onSubmit(e: React.FormEvent<HTMLFormElement>) {
@@ -43,6 +39,3 @@ function SearchInput_() {
     );
 }
 
-const SearchInput = connect(null, mapDispatchToProps)(SearchInput_);
-
-export default SearchInput;

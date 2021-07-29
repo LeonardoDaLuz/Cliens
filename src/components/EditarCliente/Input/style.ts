@@ -9,9 +9,9 @@ export const InputStyles = styled.div`
     padding: 10px;
 
     label {
-            display: block;
+            display: inline-block;
             font-weight: bold;
-            color: ${colorTheme.darkPrimary};
+            color: ${colorTheme.secondaryText};
             line-height: 48px;
             text-shadow: 0px 3px 3px rgba(0,0,0,0.3);
     }
@@ -62,3 +62,12 @@ export const InputIcon = styled.div<InputIconProps>`
 
 
 
+export const ErrorLabel = styled.div`
+display: inline-block;
+    text-align: center;
+    color: ${colorTheme.inputError.lighten(0.4)};
+    font-weight: 600;   
+    line-height: 48px;
+    margin: 0px 8px;
+
+`;

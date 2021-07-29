@@ -1,7 +1,5 @@
 import Color from 'color';
 
-
-
 const colorTheme = {
     primary: Color('#7E3BB2'),
     primaryText: Color('#FFF'),
@@ -23,7 +21,7 @@ const colorTheme = {
 
 
 type convertedType<Type> = {
-    [Property in keyof Type]: any; //este tipo se baseia em todas as keys de colorTheme, mas muda seus tipos para any, dessa forma podemos usa-lo no styled components de modo que o mesmo faça conversão implícita de Color para string hexadecimal. Isso removerá a necessidade de usar .hex() nos Colors. Em contrapartida perdemos o intelisense disso.
+    [Property in keyof Type]: any; 
 };
 
 export default colorTheme as convertedType<typeof colorTheme>;

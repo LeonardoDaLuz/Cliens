@@ -20,6 +20,7 @@ import bairro_icon from './svg/bairro_icon.svg';
 import number_icon from './svg/number_icon.svg';
 import street_icon from './svg/street_icon.svg';
 import update_icon from './svg/update_icon.svg';
+import update_icon_2 from './svg/update_icon_2.svg';
 
 const assets = {
     default_logo_white_background,
@@ -43,7 +44,8 @@ const assets = {
     bairro_icon,
     number_icon,
     street_icon,
-    update_icon
+    update_icon,
+    update_icon_2
 
 }
 

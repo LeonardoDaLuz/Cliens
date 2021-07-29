@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import assets from "../../../assets";
 import colorTheme from "../../../colorTheme";
 
 
@@ -18,21 +17,16 @@ input {
     border: none;
     outline: none;
     padding: 0px;
-
-   font-weight: bold;
-
+    font-weight: bold;
     color: ${colorTheme.primary.lighten(0.3)};
     background-color: transparent;
-    font-smooth: 2em;
-    /* background: ${colorTheme.subtleSecondary} url(${assets.email_icon}) no-repeat 3% 50%; */
     background-size: 34px;
 
 
     &::placeholder{
         color: ${colorTheme.placeholderText};
         font-weight: bold;
-        font-smooth: 2em;
-        
+       
     }
 }
 `;

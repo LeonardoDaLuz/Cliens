@@ -10,30 +10,37 @@ import Listagem from "./components/Listagem";
 import EditarCliente from "./components/EditarCliente";
 import Header from './components/Header';
 import React from "react";
+import { useSelector } from "react-redux";
+import { RootState } from "./store";
+
 
 function App() {
+
+  const user = useSelector((state: RootState) => state.user);
+
   return (
     <Router>
       <GlobalStyle />
-      <Switch>
-        <Route path="/login">
-          <Login />
-        </Route>
-        <Route path="/">
-          <Header />
-          <Switch>
-            <Route path="/editar">
-              <EditarCliente />
-            </Route>
-            <Route path="/adicionar">
-              <EditarCliente />
-            </Route>
-            <Route path="/clientes">
-              <Listagem />
-            </Route>
-          </Switch>
-        </Route>
-      </Switch>
+      {/*user.loginStatus === 'NOT_LOGGED' &&
+        <Login /> ||*/
+        <Switch>
+          <Route path="/">
+            <Header />
+            <Switch>
+              <Route path="/editar">
+                <EditarCliente />
+              </Route>
+              <Route path="/adicionar">
+                <EditarCliente />
+              </Route>
+              <Route path="/clientes">
+                <Listagem />
+              </Route>
+            </Switch>
+          </Route>
+        </Switch>
+      }
+
     </Router>
   );
 }

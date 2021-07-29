@@ -1,12 +1,14 @@
 /* eslint-disable no-constant-condition */
 import React from "react";
-import { ApplicationState } from '../../store';
 import { LoaderWheelInTheTitle_ } from './style';
-import { connect, ConnectedProps } from "react-redux";
+import { useSelector } from "react-redux";
 import { useRef } from "react";
 import { useEffect } from "react";
+import { RootState } from "../../store";
 
-function LoaderWheelInThetitle({ clientsState }: ConnectedProps<typeof connector>) {
+function LoaderWheelInThetitle() {
+
+    const clientsState = useSelector((state: RootState) => state.customers);
 
     const elementRef = useRef<HTMLDivElement>(null);
 
@@ -27,13 +29,9 @@ function LoaderWheelInThetitle({ clientsState }: ConnectedProps<typeof connector
 
     useEffect(() => {
 
-
-
         waitTochangePositionOnScrollDown();
 
         window.addEventListener('scroll', waitTochangePositionOnScrollDown);
-
-        //const intervalId = setInterval(waitTochangePositionOnScrollDown, 100);
 
         return () => window.removeEventListener('scroll', waitTochangePositionOnScrollDown);
 
@@ -54,11 +52,5 @@ function LoaderWheelInThetitle({ clientsState }: ConnectedProps<typeof connector
     }
 }
 
-const mapStateToProps = (store: ApplicationState) => ({
-    clientsState: store.clients
-});
 
-const connector = connect(mapStateToProps, {});
-
-
-export default connector(LoaderWheelInThetitle);
+export default LoaderWheelInThetitle;

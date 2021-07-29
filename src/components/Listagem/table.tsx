@@ -1,10 +1,9 @@
 import React from "react";
 import { TableContainer, TableLoaderWheel } from "./style";
-import { Button, Container, Icon } from "../../globalStyle";
+import { Button, Icon } from "../../globalStyle";
 import assets from "../../assets";
 import { formatCPF } from "../../utils/formatCpf";
-import { Client } from '../../store/types/clients.types';
-
+import { Client } from "../../store/customers";
 
 interface props {
     lista: Client[],
@@ -13,7 +12,7 @@ interface props {
 }
 
 
-export default function Table({ lista, loadCompleted, status }: props): JSX.Element {
+export default function Table({ lista, loadCompleted }: props) {
 
     return (
         <TableContainer>
@@ -29,8 +28,8 @@ export default function Table({ lista, loadCompleted, status }: props): JSX.Elem
             <tbody>
                 {lista && lista.map((item: Client, index: number) => {
                     return (
-                        <>
-                            <tr key={index}>
+                        <React.Fragment key={index}>
+                            <tr >
                                 <td>{index} - {item["nome"]}</td>
                                 <td>{formatCPF(item["cpf"])} </td>
                                 <td>{item["email"].toLocaleLowerCase()} </td>
@@ -45,20 +44,22 @@ export default function Table({ lista, loadCompleted, status }: props): JSX.Elem
                                 </td>
                             </tr>
                             <tr><td colSpan={5}><hr></hr></td></tr>
-                        </>
+                        </ React.Fragment>
                     );
                 })}
 
             </tbody>
             <tfoot>
-                <td colSpan={5}>
-                    {
-                        !loadCompleted && <TableLoaderWheel />
-                    }
-                    {
-                        loadCompleted && <span>Pesquisa concluída</span>
-                    }
-                </td>
+                <tr>
+                    <td key={0} colSpan={5}>
+                        {
+                            !loadCompleted && <TableLoaderWheel />
+                        }
+                        {
+                            loadCompleted && <span>Pesquisa concluída</span>
+                        }
+                    </td>
+                </tr>
             </tfoot>
         </TableContainer>
     );

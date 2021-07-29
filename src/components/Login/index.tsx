@@ -4,24 +4,21 @@ import { LoginPage, Background, LoginWindow, ProfileIcon, LoginWheel, LoginError
 import Input from "./Input";
 import assets from "../../assets";
 import { Icon, Button, LoaderWheel } from "../../globalStyle";
-import { Formik, Form, Field, ErrorMessage, useFormik } from 'formik';
-import { bindActionCreators } from "redux";
-import { ApplicationState } from "../../store";
-import { connect } from "react-redux";
-import { loginAction } from '../../store/actions/user.action';
-import { UserState } from "../../store/types/user.types";
-import styled from "styled-components";
+import { useFormik } from 'formik';
 import { useHistory } from "react-router";
+import { useSelector } from "react-redux";
+import { RootState, useAppDispatch } from '../../store';
+import { loginThunk, loginFailure } from '../../store/user';
 
-type props = {
-    loginAction: any,
-    user: UserState
-}
+function Login() {
 
-function Login({ loginAction, user }: props) {
+    const user = useSelector((state: RootState) => state.user);
+    const dispatch = useAppDispatch();
 
-    const validate = (values: any) => {
-        const errors: any = {};
+    const validate = (values: { login: string, password: string }) => {
+
+        const errors: Partial<typeof values> = {};
+
         if (!values.login) {
             errors.login = 'Requerido';
         } else if (
@@ -45,18 +42,10 @@ function Login({ loginAction, user }: props) {
             password: '',
         },
         validate,
-        onSubmit: values => {
-            loginAction(values.login, values.password);
+        onSubmit: async (values) => {
+            dispatch(loginThunk(values.login, values.password));
         },
     });
-
-    const history = useHistory();
-
-    if(user.loginStatus === 'LOGGED') {
-        history.push('/listagem');
-    }
-
-
 
     return (
         <LoginPage>
@@ -106,13 +95,4 @@ function Login({ loginAction, user }: props) {
     );
 }
 
-const mapDispatchToProps = (dispatch: any) =>
-    bindActionCreators({ loginAction }, dispatch);
-
-const mapStateToProps = (store: ApplicationState) => ({
-    user: store.user,
-})
-
-const connector = connect(mapStateToProps, mapDispatchToProps);
-
-export default connector(Login);
+export default Login;

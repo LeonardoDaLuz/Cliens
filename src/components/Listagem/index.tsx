@@ -1,49 +1,35 @@
 import React from 'react';
-import { ListagemContainer, BottomLeftLoaderWheel, SearchDetail } from "./style";
-import { Container, Icon, Flex } from "../../globalStyle";
+import { ListagemContainer, SearchDetail } from "./style";
+import { Container, Icon } from "../../globalStyle";
 import assets from "../../assets";
 import { useEffect } from "react";
-import { bindActionCreators } from "redux";
-import { infiniteClientLoaderStart, infiniteClientLoaderStop, setClientLoadPathAndQuery } from "../../store/actions/clients.action";
-import { connect } from "react-redux";
-import { withRouter, RouteComponentProps } from "react-router";
+import { useSelector } from "react-redux";
+import {  useLocation } from "react-router";
 import { mergePathWithQueryAndQuery } from "../../utils/mergePathWithQueryAndQuery";
-import { useRef } from "react";
 import Table from "./table";
-import { ApplicationState } from '../../store'
-import { ClientsState } from '../../store/types/clients.types'
-import LoaderWheelInTheBottom from './LoaderWheelInTheBottom';
 import LoaderWheelInTheTitle from './LoaderWheelInTheTitle';
+import { RootState } from '../../store';
+import { useAppDispatch } from '../../store/hooks';
+import { infiniteCustomerLoaderThunk, infiniteCustomerLoaderStop, reconfigureInfiniteLoader } from '../../store/customers';
 
-type props = {
-    clientsState: ClientsState;
-    infiniteClientLoaderStart: typeof infiniteClientLoaderStart;
-    infiniteClientLoaderStop: () => void;
-    setClientLoadPathAndQuery: typeof setClientLoadPathAndQuery;
-}
+function Listagem() {
 
-
-
-function Listagem({ clientsState, infiniteClientLoaderStart, infiniteClientLoaderStop, setClientLoadPathAndQuery, location }: props & RouteComponentProps) {
-
+    const location = useLocation();
     const path = location.pathname;
     const query = location.search;
 
+    const clientsState = useSelector((state: RootState) => state.customers);
+    const dispatch = useAppDispatch();
 
     useEffect(() => {
-
-        infiniteClientLoaderStart(location.pathname, location.search, 30);
-
-        return infiniteClientLoaderStop;
-
+        dispatch(infiniteCustomerLoaderThunk(location.pathname, location.search, 30))
+        return () => { dispatch(infiniteCustomerLoaderStop()) };
     }, []);
 
 
     useEffect(() => {
-
-        setClientLoadPathAndQuery(path, query);
-
-    }, [path, query, setClientLoadPathAndQuery]);
+        dispatch(reconfigureInfiniteLoader({ path, query }));
+    }, [path, query]);
 
 
     const selectedClients = clientsState.data[mergePathWithQueryAndQuery(path, query)];
@@ -52,13 +38,13 @@ function Listagem({ clientsState, infiniteClientLoaderStart, infiniteClientLoade
 
     return (
         <ListagemContainer>
-           
+
             <Container>
                 <div>
                     <h1>
                         <Icon src={assets.listagem_icon} width='50px' height='50px' />
                         <span>Listagem</span>
- 
+
                     </h1>
                     <LoaderWheelInTheTitle />
                     {searchedText &&
@@ -76,12 +62,6 @@ function Listagem({ clientsState, infiniteClientLoaderStart, infiniteClientLoade
     );
 }
 
-const mapStateToProps = (store: ApplicationState) => ({
-    clientsState: store.clients
-});
 
-const mapDispatchToProps = (dispatch: any) =>
-    bindActionCreators({ infiniteClientLoaderStart, infiniteClientLoaderStop, setClientLoadPathAndQuery }, dispatch);
-
-export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Listagem));
+export default Listagem;
 

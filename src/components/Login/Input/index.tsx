@@ -1,4 +1,4 @@
-import React, { ChangeEventHandler } from "react";
+import React from "react";
 import { BeautifulInputStyles, InputBackground, InputIcon, ErrorLabel } from "./style";
 
 interface props {
