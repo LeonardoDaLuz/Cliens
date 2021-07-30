@@ -27,13 +27,14 @@ function App() {
           <Route path="/">
             <Header />
             <Switch>
-              <Route path="/editar">
+
+              <Route path="/edit/:cpf">
                 <EditarCliente />
               </Route>
-              <Route path="/adicionar">
+              <Route path="/edit/">
                 <EditarCliente />
               </Route>
-              <Route path="/clientes">
+              <Route path="/customers">
                 <Listagem />
               </Route>
             </Switch>

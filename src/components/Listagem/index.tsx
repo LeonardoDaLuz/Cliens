@@ -15,7 +15,8 @@ import { infiniteCustomerLoaderThunk, infiniteCustomerLoaderStop, reconfigureInf
 function Listagem() {
 
     const location = useLocation();
-    const path = location.pathname;
+    const path = '/clientes';
+
     const query = location.search;
 
     const clientsState = useSelector((state: RootState) => state.customers);

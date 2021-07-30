@@ -22,7 +22,7 @@ export const InputStyles = styled.div`
         outline: none;
         padding: 0px;
         font-weight: bold;
-        color: ${colorTheme.placeholderText};
+        color: ${colorTheme.primary};
         background-color: transparent;
         font-smooth: 2em;
         /* background: ${colorTheme.subtleSecondary} url(${assets.email_icon}) no-repeat 3% 50%; */
@@ -37,12 +37,26 @@ export const InputStyles = styled.div`
     }
 `;
 
-export const InputBackground = styled.div`
+interface InputBackgroundProps {
+    disabled: boolean;
+}
+
+export const InputBackground = styled.div<InputBackgroundProps>`
     background-color: ${colorTheme.subtleSecondary};
     border-radius: 5px;
     display: flex;
     height: 50px;
     align-items: center;
+
+    opacity: ${({disabled})=>{
+        if(disabled)
+            return '0.5';
+        else
+            return '1';
+    }};
+
+
+
 `;
 
 interface InputIconProps {

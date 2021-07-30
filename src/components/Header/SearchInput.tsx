@@ -18,7 +18,7 @@ export default function SearchInput() {
     }
 
     function push(searchText = state) {
-        history.push('/clientes?q=' + searchText);
+        history.push('/customers?q=' + searchText);
     }
 
     return (
