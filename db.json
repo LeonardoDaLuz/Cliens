@@ -39028,6 +39028,32 @@
         "cidade": "New Mohammed"
       },
       "id": 3001
+    },
+    {
+      "nome": "leonardo da luz pinto",
+      "cpf": "07030393937",
+      "email": "leohotluz@gmail.com",
+      "endereco": {
+        "cep": "83209-332",
+        "rua": "Rua Osvaldo Gonçalves Pereira",
+        "numero": 156,
+        "cidade": "Paranaguá",
+        "bairro": "Jardim Guaraituba"
+      },
+      "id": 3002
+    },
+    {
+      "nome": "leonardo da luz pinto",
+      "cpf": "07030393937",
+      "email": "leohotluz@gmail.com",
+      "endereco": {
+        "cep": "83209-332",
+        "rua": "Rua Osvaldo Gonçalves Pereira",
+        "numero": 2312,
+        "cidade": "Paranaguá",
+        "bairro": "Jardim Guaraituba"
+      },
+      "id": 3003
     }
   ]
 }
