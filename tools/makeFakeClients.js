@@ -1,5 +1,6 @@
 /**
  * Cria clientes fakes apra nossa aplicação
+ * use por ex:  node .\makeFakeClients.js -quantity=3000
  */
 
 var faker = require('faker');
@@ -27,7 +28,8 @@ function makeFakeClients(quantity) {
 
     let clients = Array(quantity);
 
-    return [...clients].map(()=> ({
+    return [...clients].map((item, index)=> ({
+            id: index,
             nome: faker.name.findName(),
             cpf: gerarCpf(),
             email: faker.internet.email(),
@@ -35,7 +37,7 @@ function makeFakeClients(quantity) {
                 cep: faker.datatype.number(10000000, 99999999),
                 rua: faker.address.streetName(),
                 numero: faker.datatype.number(1000, 9999),
-                bairro: faker.address.address,
+                bairro: faker.address.county(),
                 cidade: faker.address.city(),
             }
         

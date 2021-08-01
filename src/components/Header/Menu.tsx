@@ -7,7 +7,7 @@ import { Link} from "react-router-dom";
 function Menu() {
     return (
         <MenuContainer>
-            <Link to='/edit' style={{ zIndex: 2 }}>
+            <Link to='/add' style={{ zIndex: 2 }}>
                 <Icon src={assets.adicionar_cliente_icon} width='20px' height='20px' />
                 Adicionar
             </Link>

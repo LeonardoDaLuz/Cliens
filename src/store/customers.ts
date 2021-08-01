@@ -5,6 +5,7 @@ import { AppDispatch, AppThunk, RootState } from '.';
 import config from '../config';
 import { mergePathWithQueryAndQuery } from '../utils/mergePathWithQueryAndQuery';
 import { waitForSeconds } from '../utils/waitForSeconds';
+import { FormularyType } from '../components/EditarCliente';
 
 export type ClientsState = {
     readonly status: 'idle' | 'loading' | 'loaded' | 'fail',
@@ -37,6 +38,7 @@ export interface ClientsAction {
 }
 
 export interface Client {
+    id: number,
     nome: string,
     cpf: string,
     email: string,
@@ -176,4 +178,5 @@ export async function loadMoreClients(dispatch: AppDispatch, getState: () => Roo
             dispatch(clientSearchFailure({ error }));
         })
 }
+
 

@@ -1,12 +1,14 @@
 import { Action, configureStore, ThunkAction } from '@reduxjs/toolkit'
 import { useDispatch } from 'react-redux';
 import userReducer from './user';
-import customerReducer from './customers';
+import customersReducer from './customers';
+import customerReducer from './customer';
 
 const store = configureStore({
   reducer: {
     user: userReducer,
-    customers: customerReducer,
+    customers: customersReducer,
+    customer: customerReducer
   }
 });
 

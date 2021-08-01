@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import colorTheme from "../../colorTheme";
+import { LoaderWheel } from "../../globalStyle";
 
 export const EditarStyles = styled.div`
 
@@ -50,4 +51,11 @@ export const CenterButtons = styled.div`
         margin: 5px;
         padding: 10px 10px 10px 3px;
     }
+`;
+
+export const CenteredLoaderWheel = styled(LoaderWheel)`
+    display: block;
+    margin: 200px auto;
+    width: 100px;
+    height: 100px;
 `;

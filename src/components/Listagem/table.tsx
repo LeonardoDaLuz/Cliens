@@ -4,15 +4,21 @@ import { Button, Icon } from "../../globalStyle";
 import assets from "../../assets";
 import { formatCPF } from "../../utils/formatCpf";
 import { Client } from "../../store/customers";
+import { loadCustomerSucess } from "../../store/customer";
+import { useAppDispatch } from "../../store/hooks";
+import { useHistory } from "react-router";
 
-interface props {
+type props =   {
     lista: Client[],
     loadCompleted: boolean,
     status: string
 }
 
 
-export default function Table({ lista, loadCompleted }: props) {
+function Table({ lista, loadCompleted }: props) {
+
+    const dispatch = useAppDispatch();
+    const history = useHistory();
 
     return (
         <TableContainer>
@@ -35,7 +41,10 @@ export default function Table({ lista, loadCompleted }: props) {
                                 <td>{item["email"].toLocaleLowerCase()} </td>
                                 <td>{item["endereco"]['cidade']} </td>
                                 <td width='140px'>
-                                    <Button>
+                                    <Button onClick={(e) => {
+                                        dispatch(loadCustomerSucess({ id: item.id, customer: item }));
+                                        history.push('/edit/'+item.id);
+                                    }}>
                                         <Icon src={assets.edit_icon} height='16px' width='16px' />
                                     </Button>
                                     <Button>
@@ -64,3 +73,4 @@ export default function Table({ lista, loadCompleted }: props) {
         </TableContainer>
     );
 }
+export default Table;

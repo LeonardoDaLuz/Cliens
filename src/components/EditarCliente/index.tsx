@@ -1,14 +1,16 @@
-import React from "react";
-import { EditarStyles, CenterButtons } from "./style";
-import { Button, Container, Icon } from "../../globalStyle";
+import React, { useEffect } from "react";
+import { EditarStyles, CenterButtons, CenteredLoaderWheel } from "./style";
+import { Button, Container, Icon, LoaderWheel } from "../../globalStyle";
 import assets from "../../assets";
 import { formatCPF } from "../../utils/formatCpf";
 import Input from "./Input";
 import { useFormik } from "formik";
-import { useAppDispatch } from "../../store/hooks";
-import { useParams } from "react-router";
+import { useAppDispatch, useAppSelector } from "../../store/hooks";
+import { useHistory, useLocation, useParams } from "react-router";
+import { loadCustomer, updateCustomer } from "../../store/customer";
+import { RootState } from "../../store";
 
-interface FormularyType {
+export interface FormularyType {
     name?: string,
     cpf?: string,
     email?: string,
@@ -47,9 +49,23 @@ export default function EditarCliente() {
 
     const dispatch = useAppDispatch();
 
-    const { cpf } = useParams<{ cpf: string }>();
+    const history = useHistory();
+
+    const { id } = useParams<{ id: string }>();
+
+    useEffect(() => {
+
+        if (id)
+            dispatch(loadCustomer(id));
+        else
+            formik.setValues({});
+
+    }, []);
 
 
+    const customerState = useAppSelector((store: RootState) => store.customer);
+
+    const customer = customerState.customer;
 
     const validate = (values: FormularyType) => {
 
@@ -101,9 +117,34 @@ export default function EditarCliente() {
         },
         validate,
         onSubmit: async (values) => {
+
+            if (id) {
+                await dispatch(updateCustomer(customer.id, values));
+            } else {
+                await dispatch(updateCustomer(-1, values));
+            }
+
+            history.push('/');
             // dispatch(loginThunk(values.login, values.password));
         }
     })
+
+    useEffect(() => {
+
+        if (customer && id) {
+            formik.setValues({
+                name: customer.nome,
+                cpf: customer.cpf,
+                email: customer.email,
+                cep: customer.endereco.cep.toString(),
+                street: customer.endereco.rua,
+                district: customer.endereco.bairro,
+                city: customer.endereco.cidade,
+                number: customer.endereco.numero
+            });
+        }
+    }, [customer])
+
 
 
     async function autoFillWithViaCEP(e: React.ChangeEvent<HTMLInputElement>) {
@@ -141,36 +182,41 @@ export default function EditarCliente() {
     return (
         <EditarStyles>
             <Container>
+
                 <h1>
                     <Icon src={assets.edit_icon} width='50px' height='50px' />
-                    {cpf && <span>Editar Cliente</span> || <span>Adicionar Cliente</span>
+                    {id && <span>Editar Cliente</span> || <span>Adicionar Cliente</span>
                     }
                 </h1>
-                <form onSubmit={formik.handleSubmit}>
-                    <Input formik={formik} name='name' type='text' placeholder='Nome...' label='Nome' icon={assets.name_icon} />
-                    <Input formik={formik} type='text' name='cpf' placeholder='000.000.000-00' label='CPF' icon={assets.cpf_icon} format='cpf' disabled={cpf ? true : false} />
-                    <Input formik={formik} type='text' name='email' placeholder='example@gmail.com' label='E-mail' icon={assets.email_icon} />
-                    <fieldset>
-                        <legend>Endereço:</legend>
-                        <Input formik={formik} type='text' name='cep' placeholder='83209-000' label='CEP' icon={assets.cep_icon} format='cep' onChange={autoFillWithViaCEP} />
-                        <Input formik={formik} type='text' name='street' placeholder='Rua Exemplo da Silva' label='Rua' icon={assets.street_icon} />
-                        <Input formik={formik} type='text' name='district' placeholder='Bairro' label='Bairro' icon={assets.bairro_icon} />
-                        <Input formik={formik} type='text' name='city' placeholder='São paulo...' label='Cidade' icon={assets.city_icon} />
-                        <Input formik={formik} type='number' name='number' placeholder='123...' label='Número' icon={assets.number_icon} />
-                    </fieldset>
 
-                    <CenterButtons>
-                        <Button type='submit' disabled={!formik.isValid}>
-                            <Icon src={assets.login_icon} width='32px' height='32px' />
-                            Salvar
-                        </Button>
-                        <Button>
-                            <Icon src={assets.login_icon} width='32px' height='32px' />
-                            Voltar
-                        </Button>
-                    </CenterButtons>
+                {(customer || !id) && customerState.status !== 'updating' &&
+                    <form onSubmit={formik.handleSubmit}>
+                        <Input formik={formik} name='name' type='text' placeholder='Nome...' label='Nome' icon={assets.name_icon} />
+                        <Input formik={formik} type='text' name='cpf' placeholder='000.000.000-00' label='CPF' icon={assets.cpf_icon} format='cpf' />
+                        <Input formik={formik} type='text' name='email' placeholder='example@gmail.com' label='E-mail' icon={assets.email_icon} />
+                        <fieldset>
+                            <legend>Endereço:</legend>
+                            <Input formik={formik} type='text' name='cep' placeholder='83209-000' label='CEP' icon={assets.cep_icon} format='cep' onChange={autoFillWithViaCEP} />
+                            <Input formik={formik} type='text' name='street' placeholder='Rua Exemplo da Silva' label='Rua' icon={assets.street_icon} />
+                            <Input formik={formik} type='text' name='district' placeholder='Bairro' label='Bairro' icon={assets.bairro_icon} />
+                            <Input formik={formik} type='text' name='city' placeholder='São paulo...' label='Cidade' icon={assets.city_icon} />
+                            <Input formik={formik} type='number' name='number' placeholder='123...' label='Número' icon={assets.number_icon} />
+                        </fieldset>
 
-                </form>
+                        <CenterButtons>
+                            <Button type='submit' disabled={!formik.isValid}>
+                                <Icon src={assets.login_icon} width='32px' height='32px' />
+                                Salvar
+                            </Button>
+                            <Button>
+                                <Icon src={assets.login_icon} width='32px' height='32px' />
+                                Voltar
+                            </Button>
+                        </CenterButtons>
+
+                    </form> ||
+                    <CenteredLoaderWheel />
+                }
 
             </Container>
         </EditarStyles>
