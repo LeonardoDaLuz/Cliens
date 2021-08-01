@@ -21,6 +21,9 @@ import number_icon from './svg/number_icon.svg';
 import street_icon from './svg/street_icon.svg';
 import update_icon from './svg/update_icon.svg';
 import update_icon_2 from './svg/update_icon_2.svg';
+import filter_neutral from './svg/filter_neutral.svg';
+import filter_crescent from './svg/filter_crescent.svg';
+import filter_decrescent from './svg/filter_decrescent.svg';
 
 const assets = {
     default_logo_white_background,
@@ -45,7 +48,11 @@ const assets = {
     number_icon,
     street_icon,
     update_icon,
-    update_icon_2
+    update_icon_2,
+    filter_neutral,
+    filter_crescent,
+    filter_decrescent,
+
 
 }
 

@@ -71,6 +71,8 @@ export default function EditarCliente() {
 
         const errors: allPropsAsString<FormularyType> = {};
 
+        console.log('isValidCPF', values.cpf, isValidCPF(values.cpf));
+
         if (!values.name)
             errors.name = 'Requerido';
         else if (!isValidName(values.name))
@@ -81,10 +83,13 @@ export default function EditarCliente() {
 
         if (!values.cpf)
             errors.cpf = 'Requerido';
-        else if (values.cpf.length != 11)
+        else if (values.cpf.length != 14) {
             errors.cpf = 'Deve conter 11 numeros';
-        else if (!TestCPF(values.cpf))
+        }
+        else if (!isValidCPF(values.cpf)) {
+
             errors.cpf = 'CPF inválido';
+        }
 
         if (!values.email)
             errors.email = 'Requerido';
@@ -224,7 +229,10 @@ export default function EditarCliente() {
     );
 }
 
-function TestCPF(strCPF: string) {
+function isValidCPF(strCPF: string) {
+
+    strCPF = strCPF.replace(/[^\d]/g, ""); //remove caracteres repetidos
+
     let Soma;
     let Resto;
     Soma = 0;

@@ -30,16 +30,20 @@ export default function Input({ type, name, label, icon, formik, placeholder, fo
                     id={name}
                     onChange={(e) => {
 
+                        if (format === 'cpf')
+                            e.target.value = formatCPF(e.target.value);
+
+
+                        if (format === 'cep')
+                            e.target.value = formatCEP(e.target.value);
+
                         formik.handleChange(e);
+
                         if (onChange)
                             onChange(e);
                     }
                     }
-                    value={
-                        !format ? formik.values[name] :
-                            format === 'cpf' ? formataCPF(formik.values[name]) :
-                                format === 'cep' ? formataCEP(formik.values[name]) : ''
-                    }
+                    value={formik.values[name]}
                     placeholder={placeholder}
                     disabled={disabled}
                 />
@@ -49,21 +53,30 @@ export default function Input({ type, name, label, icon, formik, placeholder, fo
     )
 }
 
-function formataCPF(cpf: string | undefined) {
+function formatCPF(cpf: string | undefined) {
 
-    if (typeof cpf === 'undefined')
-        return;
+    cpf = cpf.replace(/[^\d]/g, ""); //remove caracteres especiais e letras
 
-    cpf = cpf.replace(/[^\d]/g, "").substring(0, 11)
+    if (cpf.length < 7 && cpf.length > 3) {
+        return cpf.replace(/(\d{3})/, "$1.");
+    }
+    if (cpf.length < 10 && cpf.length > 6) {
+        return cpf.replace(/(\d{3})(\d{3})/, "$1.$2.");
+    }
+    if (cpf.length > 9) {
+        console.log(cpf.length);
+        return cpf.replace(/(\d{3})(\d{3})(\d{3})/, "$1.$2.$3-");
+    }
 
-
-    return cpf.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, "$1.$2.$3-$4");
+    return cpf;
 }
 
-function formataCEP(cpf: string | undefined) {
+function formatCEP(cpf: string | undefined) {
 
-    if (typeof cpf === 'undefined')
-        return;
+
+
+    if (cpf === "undefined" || typeof cpf === 'undefined')
+        return "";
     //retira os caracteres indesejados...
     cpf = cpf.replace(/[^\d]/g, "").substring(0, 8);
 

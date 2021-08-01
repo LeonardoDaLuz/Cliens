@@ -7,251 +7,6 @@
   ],
   "clientes": [
     {
-      "id": 0,
-      "nome": "Teri Reynolds",
-      "cpf": "66528421307",
-      "email": "Catharine20@hotmail.com",
-      "endereco": {
-        "cep": 5533481,
-        "rua": "Kovacek Lodge",
-        "numero": 486,
-        "bairro": "Berkshire",
-        "cidade": "West Colleen"
-      }
-    },
-    {
-      "nome": "Matt Pfannerstill",
-      "cpf": "74338846968",
-      "email": "Dimitri62@hotmail.com",
-      "endereco": {
-        "cep": "83209332",
-        "rua": "Rua Osvaldo Gonçalves Pereira",
-        "numero": 234,
-        "cidade": "Paranaguá",
-        "bairro": "Jardim Guaraituba"
-      },
-      "id": 1
-    },
-    {
-      "id": 2,
-      "nome": "Meghan Romaguera II",
-      "cpf": "56812136921",
-      "email": "Robyn_Aufderhar22@yahoo.com",
-      "endereco": {
-        "cep": 1309272,
-        "rua": "Ullrich Grove",
-        "numero": 23,
-        "bairro": "Bedfordshire",
-        "cidade": "North Damienborough"
-      }
-    },
-    {
-      "nome": "Jamie Strosin",
-      "cpf": "17905655539",
-      "email": "Sierra_Ondricka@gmail.com",
-      "endereco": {
-        "cep": "83209332",
-        "rua": "Rua Osvaldo Gonçalves Pereira",
-        "numero": 251,
-        "cidade": "Paranaguá"
-      },
-      "id": 3
-    },
-    {
-      "nome": "Dr. Tommy Mante",
-      "cpf": "90314283536",
-      "email": "Bonita_Haag61@hotmail.com",
-      "endereco": {
-        "cep": "70854790",
-        "rua": "Fay Radial 2",
-        "numero": 913,
-        "cidade": "East Danyka"
-      },
-      "id": 4
-    },
-    {
-      "id": 5,
-      "nome": "Cheryl Williamson",
-      "cpf": "98288485200",
-      "email": "Ashtyn.Sawayn@gmail.com",
-      "endereco": {
-        "cep": 6023930,
-        "rua": "Curtis Port",
-        "numero": 183,
-        "bairro": "Bedfordshire",
-        "cidade": "New Ivory"
-      }
-    },
-    {
-      "id": 6,
-      "nome": "Christopher Abshire Sr.",
-      "cpf": "05632719065",
-      "email": "Zita.OKon@gmail.com",
-      "endereco": {
-        "cep": 7915788,
-        "rua": "Paul Mount",
-        "numero": 998,
-        "bairro": "Avon",
-        "cidade": "New Karl"
-      }
-    },
-    {
-      "id": 7,
-      "nome": "Katrina Breitenberg",
-      "cpf": "62793052442",
-      "email": "Johanna62@gmail.com",
-      "endereco": {
-        "cep": 927441,
-        "rua": "Schinner Neck",
-        "numero": 788,
-        "bairro": "Borders",
-        "cidade": "East Florence"
-      }
-    },
-    {
-      "id": 8,
-      "nome": "Duane Kling Sr.",
-      "cpf": "58664778582",
-      "email": "Lonzo.King96@gmail.com",
-      "endereco": {
-        "cep": 5117169,
-        "rua": "Larson Skyway",
-        "numero": 179,
-        "bairro": "Berkshire",
-        "cidade": "Port Erwinshire"
-      }
-    },
-    {
-      "id": 9,
-      "nome": "Natalie Reichel",
-      "cpf": "32681719747",
-      "email": "Kraig.Lueilwitz70@gmail.com",
-      "endereco": {
-        "cep": 9581211,
-        "rua": "Brisa Gateway",
-        "numero": 138,
-        "bairro": "Cambridgeshire",
-        "cidade": "New Adrianachester"
-      }
-    },
-    {
-      "id": 10,
-      "nome": "Kathryn Runte",
-      "cpf": "54488287875",
-      "email": "Daniella_Kunde@hotmail.com",
-      "endereco": {
-        "cep": 9799702,
-        "rua": "Parker Junctions",
-        "numero": 662,
-        "bairro": "Borders",
-        "cidade": "East Othomouth"
-      }
-    },
-    {
-      "id": 11,
-      "nome": "Mathew Gusikowski",
-      "cpf": "75301855867",
-      "email": "Elizabeth_Durgan@yahoo.com",
-      "endereco": {
-        "cep": 1415134,
-        "rua": "Steuber Roads",
-        "numero": 425,
-        "bairro": "Borders",
-        "cidade": "Merced"
-      }
-    },
-    {
-      "id": 12,
-      "nome": "Brendan Crist",
-      "cpf": "74308486211",
-      "email": "Maci89@hotmail.com",
-      "endereco": {
-        "cep": 4809474,
-        "rua": "Kaelyn Village",
-        "numero": 822,
-        "bairro": "Berkshire",
-        "cidade": "Port Emilianomouth"
-      }
-    },
-    {
-      "id": 13,
-      "nome": "Alfonso Grimes Sr.",
-      "cpf": "61581458665",
-      "email": "Winnifred_Predovic57@gmail.com",
-      "endereco": {
-        "cep": 5130397,
-        "rua": "Cyrus Canyon",
-        "numero": 280,
-        "bairro": "Avon",
-        "cidade": "Priceville"
-      }
-    },
-    {
-      "id": 14,
-      "nome": "Taylor Keebler",
-      "cpf": "62687738883",
-      "email": "Green.Stanton76@yahoo.com",
-      "endereco": {
-        "cep": 3478387,
-        "rua": "Bayer Corner",
-        "numero": 339,
-        "bairro": "Bedfordshire",
-        "cidade": "East Telly"
-      }
-    },
-    {
-      "id": 15,
-      "nome": "Curtis Connelly",
-      "cpf": "61375782754",
-      "email": "Telly.Monahan50@hotmail.com",
-      "endereco": {
-        "cep": 3492154,
-        "rua": "Hollis Rest",
-        "numero": 358,
-        "bairro": "Bedfordshire",
-        "cidade": "Schinnerfurt"
-      }
-    },
-    {
-      "id": 16,
-      "nome": "Kelly Witting",
-      "cpf": "10942155548",
-      "email": "Gloria.McKenzie70@gmail.com",
-      "endereco": {
-        "cep": 6966474,
-        "rua": "Felicity Island",
-        "numero": 247,
-        "bairro": "Buckinghamshire",
-        "cidade": "New Juana"
-      }
-    },
-    {
-      "id": 17,
-      "nome": "Dixie Kunde",
-      "cpf": "24074978300",
-      "email": "Shyanne.Wiza@yahoo.com",
-      "endereco": {
-        "cep": 3577119,
-        "rua": "Conn Points",
-        "numero": 469,
-        "bairro": "Cambridgeshire",
-        "cidade": "Port Louisa"
-      }
-    },
-    {
-      "id": 18,
-      "nome": "Tiffany Spencer PhD",
-      "cpf": "31367859247",
-      "email": "Francesco1@yahoo.com",
-      "endereco": {
-        "cep": 5621387,
-        "rua": "Hartmann Shoals",
-        "numero": 485,
-        "bairro": "Cambridgeshire",
-        "cidade": "Palatine"
-      }
-    },
-    {
       "id": 19,
       "nome": "Jodi Mertz",
       "cpf": "64585314199",
@@ -265,19 +20,6 @@
       }
     },
     {
-      "id": 20,
-      "nome": "Erika West",
-      "cpf": "26739766207",
-      "email": "Mya.Rowe20@gmail.com",
-      "endereco": {
-        "cep": 9489322,
-        "rua": "Pouros Manors",
-        "numero": 676,
-        "bairro": "Avon",
-        "cidade": "Worcester"
-      }
-    },
-    {
       "id": 21,
       "nome": "Ryan Dietrich",
       "cpf": "11643066269",
@@ -288,19 +30,6 @@
         "numero": 578,
         "bairro": "Avon",
         "cidade": "South Arturo"
-      }
-    },
-    {
-      "id": 22,
-      "nome": "Irving Sipes",
-      "cpf": "17280831419",
-      "email": "Leta.Von21@hotmail.com",
-      "endereco": {
-        "cep": 6895713,
-        "rua": "Cole Ways",
-        "numero": 419,
-        "bairro": "Berkshire",
-        "cidade": "New Jacehaven"
       }
     },
     {
@@ -39054,6 +38783,19 @@
         "bairro": "Jardim Guaraituba"
       },
       "id": 3003
+    },
+    {
+      "nome": "nero nero",
+      "cpf": "07030393937",
+      "email": "teste@teste.com",
+      "endereco": {
+        "cep": "83209000",
+        "rua": "Avenida Bento Munhoz da Rocha Neto",
+        "numero": 236,
+        "cidade": "Paranaguá",
+        "bairro": "Aeroporto"
+      },
+      "id": 3004
     }
   ]
 }

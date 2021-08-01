@@ -82,7 +82,7 @@ export const TableContainer = styled.table`
             }
 
             hr {         
-                margin: 0px;
+                margin: 0px 13px;
                 border: none;
                 border-bottom: 1px solid ${colorTheme.secondary.lighten(0.1)};
             }

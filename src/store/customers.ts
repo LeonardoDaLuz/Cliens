@@ -35,6 +35,7 @@ export interface ClientsAction {
     error?: any,
     path?: string,
     query?: string,
+    id?: number
 }
 
 export interface Client {
@@ -119,13 +120,21 @@ const customersSlice = createSlice({
         },
         infiniteLoaderPointerReset: (state: Mutable<ClientsState>) => {
             state.loadCompleted = false;
+            state.pointer = 0;
+        },
+        previewDeleteCustomer: (state: Mutable<ClientsState>, action: PayloadAction<ClientsAction>) => {
+            state.data[state.currentKey].forEach((item: Client, index: number )=> {
+                if(item.id===action.payload.id) {
+                    state.data[state.currentKey].splice(index, 1);
+                }
+            })
         }
     }
 })
 
 export default customersSlice.reducer;
 
-export const { reconfigureInfiniteLoader, infiniteCustomerLoaderStop, infiniteLoaderPointerReset, customerLoaderStart, customerLoaderSuccess, clientSearchFailure } = customersSlice.actions;
+export const { reconfigureInfiniteLoader, infiniteCustomerLoaderStop, infiniteLoaderPointerReset, customerLoaderStart, customerLoaderSuccess, clientSearchFailure, previewDeleteCustomer } = customersSlice.actions;
 
 
 export const infiniteCustomerLoaderThunk = (path = '', query = '', quantity = 30): AppThunk => {
@@ -141,7 +150,7 @@ export const infiniteCustomerLoaderThunk = (path = '', query = '', quantity = 30
 
         while (customersState.holdInfiniteLoader) {
 
-            if (customersState.reloadTrigger || (!customersState.loadCompleted && window.pageYOffset > document.body.clientHeight - window.innerHeight - 3000)) {
+            if (customersState.reloadTrigger || (!customersState.loadCompleted && window.pageYOffset > document.body.clientHeight - window.innerHeight - 3000 || (customersState.pointer < customersState.data[customersState.currentKey].length - customersState.currentQuantity))) {
                 await loadMoreClients(dispatch, getState);
             } else {
                 await waitForSeconds(0.1);

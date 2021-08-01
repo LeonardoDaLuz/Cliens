@@ -4,9 +4,10 @@ import { AppDispatch, AppThunk, RootState } from '.';
 import config from '../config';
 import { waitForSeconds } from '../utils/waitForSeconds';
 import { FormularyType } from '../components/EditarCliente';
+import { previewDeleteCustomer } from './customers';
 
 export type CustomerState = {
-    readonly status: 'idle' | 'loading' | 'loaded' | 'loading_failed' | 'updating' | 'updated' | 'update_failed',
+    readonly status: 'idle' | 'loading' | 'loaded' | 'loading_failed' | 'updating' | 'updated' | 'update_failed' | 'deleting' | 'deleted' | 'deleting_failed',
     readonly customer?: Customer,
     readonly id: number
     readonly error?: string,
@@ -78,6 +79,18 @@ const customersSlice = createSlice({
             state.status = 'update_failed';
             state.id = action.payload.id;
         },
+        deleteCustomerStart: (state: Mutable<CustomerState>, action: PayloadAction<CustomerAction>) => {
+            state.status = "deleting";
+            state.id = action.payload.id;
+        },
+        deleteCustomerSuccess: (state: Mutable<CustomerState>, action: PayloadAction<CustomerAction>) => {
+            state.status = "deleted";
+            state.id = action.payload.id;
+        },
+        deleteCustomerFailure: (state: Mutable<CustomerState>, action: PayloadAction<CustomerAction>) => {
+            state.status = "deleting_failed";
+            state.id = action.payload.id;
+        }
 
     }
 })
@@ -90,7 +103,10 @@ export const {
     loadCustomerFailure,
     updateCustomerStart,
     updateCustomerSuccess,
-    updateCustomerFailure
+    updateCustomerFailure,
+    deleteCustomerStart,
+    deleteCustomerSuccess,
+    deleteCustomerFailure
 } = customersSlice.actions;
 
 export function loadCustomer(id: string): AppThunk {
@@ -117,7 +133,7 @@ export function loadCustomer(id: string): AppThunk {
                 dispatch(loadCustomerFailure({ id, error: "Failed to parse answer :" + e, url }));
             }
         } else {
-            dispatch(loadCustomerFailure({ id, error: response.status , url }))
+            dispatch(loadCustomerFailure({ id, error: response.status, url }))
         }
     }
 }
@@ -127,7 +143,7 @@ export function updateCustomer(id: number, values: FormularyType): AppThunk {
 
         dispatch(updateCustomerStart({ id }));
 
-        const url = config.apiUrl + '/clientes/' + (id!==-1?id:'');
+        const url = config.apiUrl + '/clientes/' + (id !== -1 ? id : '');
 
         const body = {
             nome: values.name,
@@ -144,7 +160,7 @@ export function updateCustomer(id: number, values: FormularyType): AppThunk {
 
 
         const response = await fetch(url, {
-            method: id===-1?'POST':'PUT',
+            method: id === -1 ? 'POST' : 'PUT',
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
@@ -159,17 +175,51 @@ export function updateCustomer(id: number, values: FormularyType): AppThunk {
                 const data = await response.json();
 
                 if (data.id) {
-                    dispatch(updateCustomerSuccess({ id, customer: data , url }));
+                    dispatch(updateCustomerSuccess({ id, customer: data, url }));
 
                 } else {
-                    dispatch(updateCustomerFailure({ id, error: 'Invalid response, has not been updated ' , url }));
+                    dispatch(updateCustomerFailure({ id, error: 'Invalid response, has not been updated ', url }));
                 }
 
             } catch (e) {
-                dispatch(updateCustomerFailure({ id, error: "Failed to parse answer :" + e , url }));
+                dispatch(updateCustomerFailure({ id, error: "Failed to parse answer :" + e, url }));
             }
         } else {
-            dispatch(updateCustomerFailure({ id, error: response.status , url }))
+            dispatch(updateCustomerFailure({ id, error: response.status, url }))
+        }
+    }
+}
+
+export function deleteCustomerThunk(id: number): AppThunk {
+    return async (dispatch: AppDispatch, getState: () => RootState) => {
+
+        dispatch(deleteCustomerStart({ id }));
+        dispatch(previewDeleteCustomer({ id }));
+
+        const url = config.apiUrl + '/clientes/' + id;
+
+        const response = await fetch(url, {
+            method: 'DELETE',
+            headers: {
+                'Access-Control-Allow-Origin': config.appUrl,
+            },
+        });
+
+        if (response.status === 200) {
+            try {
+                const responseText = await response.text();
+
+                if (responseText == "{}") { //Se o json server responder {} é porque foi deletado o arquivo.
+                    dispatch(deleteCustomerSuccess({ id, url }));
+                } else {
+                    dispatch(deleteCustomerFailure({ id, error: 'Invalid response, has not been deleted ', url }));
+                }
+
+            } catch (e) {
+                dispatch(deleteCustomerFailure({ id, error: "Failed to parse answer :" + e, url }));
+            }
+        } else {
+            dispatch(deleteCustomerFailure({ id, error: response.status, url }))
         }
     }
 }

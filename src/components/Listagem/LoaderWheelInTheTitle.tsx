@@ -9,6 +9,7 @@ import { RootState } from "../../store";
 function LoaderWheelInThetitle() {
 
     const clientsState = useSelector((state: RootState) => state.customers);
+    const currentClientState = useSelector((state: RootState) => state.customer);
 
     const elementRef = useRef<HTMLDivElement>(null);
 
@@ -41,7 +42,7 @@ function LoaderWheelInThetitle() {
         waitTochangePositionOnScrollDown();
     }, [clientsState])
 
-    if (!clientsState.loadCompleted && clientsState.status !== "loaded") {
+    if ((!clientsState.loadCompleted && clientsState.status !== "loaded") || (currentClientState.status === 'deleting')) {
         return (
             <LoaderWheelInTheTitle_ ref={elementRef}>
 
