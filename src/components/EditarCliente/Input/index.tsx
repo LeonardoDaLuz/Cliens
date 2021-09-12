@@ -1,5 +1,7 @@
 import { Formik } from "formik";
-import React from "react";
+import React, { useEffect, useRef } from "react";
+import { RootState } from "../../../store";
+import { useAppSelector } from "../../../store/hooks";
 import { InputBackground, InputIcon, ErrorLabel, InputStyles } from "./style";
 
 interface props {
@@ -17,32 +19,47 @@ interface props {
 export default function Input({ type, name, label, icon, formik, placeholder, format, onChange, disabled }: props) {
 
 
+    const customerState = useAppSelector((store: RootState) => store.customer);
 
+    const customer = customerState.customer;
+
+    const elRef = useRef(null);
+
+    function handleFormatMasking(e: { target: HTMLInputElement }) {
+
+    
+        if (format === 'cpf')
+            e.target.value = formatCPF(e.target.value);
+    
+    
+        if (format === 'cep')
+            e.target.value = formatCEP(e.target.value);
+    
+        formik.handleChange(e);
+    
+        if (onChange)
+            onChange(e);
+    }
+
+    useEffect(() => {
+
+        
+        handleFormatMasking({ target: elRef.current });
+        
+    }, [customer])
+    
     return (
         <InputStyles>
             <label htmlFor={name}>{label}</label>
             {formik.errors[name] ? <ErrorLabel>({formik.errors[name]})</ErrorLabel> : null}
             <InputBackground disabled={disabled}>
                 <InputIcon icon={icon}></InputIcon>
-                <input
+                <input                    
+                    ref={elRef}
                     type={type}
-                    name={name}
+                    name={name} 
                     id={name}
-                    onChange={(e) => {
-
-                        if (format === 'cpf')
-                            e.target.value = formatCPF(e.target.value);
-
-
-                        if (format === 'cep')
-                            e.target.value = formatCEP(e.target.value);
-
-                        formik.handleChange(e);
-
-                        if (onChange)
-                            onChange(e);
-                    }
-                    }
+                    onChange={handleFormatMasking}
                     value={formik.values[name]}
                     placeholder={placeholder}
                     disabled={disabled}
@@ -53,7 +70,8 @@ export default function Input({ type, name, label, icon, formik, placeholder, fo
     )
 }
 
-function formatCPF(cpf: string | undefined) {
+
+export function formatCPF(cpf: string | undefined) {
 
     cpf = cpf.replace(/[^\d]/g, ""); //remove caracteres especiais e letras
 
@@ -64,14 +82,14 @@ function formatCPF(cpf: string | undefined) {
         return cpf.replace(/(\d{3})(\d{3})/, "$1.$2.");
     }
     if (cpf.length > 9) {
-        console.log(cpf.length);
+       
         return cpf.replace(/(\d{3})(\d{3})(\d{3})/, "$1.$2.$3-");
     }
 
     return cpf;
 }
 
-function formatCEP(cpf: string | undefined) {
+export function formatCEP(cpf: string | undefined) {
 
 
 

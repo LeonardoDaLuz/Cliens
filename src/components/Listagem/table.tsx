@@ -38,7 +38,7 @@ function Table({ lista, loadCompleted }: props) {
                         <React.Fragment key={index}>
                             <tr >
                                 <td>{item['id']}</td>
-                                <td>{item["nome"]}</td>
+                                <td><b>{item["nome"]}</b></td>
                                 <td>{formatCPF(item["cpf"])} </td>
                                 <td>{item["email"].toLocaleLowerCase()} </td>
                                 <td>{item["endereco"]['cidade']} </td>

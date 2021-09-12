@@ -1,5 +1,5 @@
 const config = {
-    apiUrl: 'http://localhost:5000',
+    apiUrl: 'http://localhost:3004',
     appUrl: 'http://localhost:3000',
 }
 

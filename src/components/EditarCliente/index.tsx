@@ -2,8 +2,7 @@ import React, { useEffect } from "react";
 import { EditarStyles, CenterButtons, CenteredLoaderWheel } from "./style";
 import { Button, Container, Icon, LoaderWheel } from "../../globalStyle";
 import assets from "../../assets";
-import { formatCPF } from "../../utils/formatCpf";
-import Input from "./Input";
+import Input, { formatCEP, formatCPF } from "./Input";
 import { useFormik } from "formik";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import { useHistory, useLocation, useParams } from "react-router";
@@ -71,7 +70,7 @@ export default function EditarCliente() {
 
         const errors: allPropsAsString<FormularyType> = {};
 
-        console.log('isValidCPF', values.cpf, isValidCPF(values.cpf));
+        //console.log('isValidCPF', values.cpf, isValidCPF(values.cpf));
 
         if (!values.name)
             errors.name = 'Requerido';
@@ -139,9 +138,9 @@ export default function EditarCliente() {
         if (customer && id) {
             formik.setValues({
                 name: customer.nome,
-                cpf: customer.cpf,
+                cpf: formatCPF(customer.cpf),
                 email: customer.email,
-                cep: customer.endereco.cep.toString(),
+                cep: formatCEP(customer.endereco.cep.toString()),
                 street: customer.endereco.rua,
                 district: customer.endereco.bairro,
                 city: customer.endereco.cidade,
@@ -231,6 +230,9 @@ export default function EditarCliente() {
 
 function isValidCPF(strCPF: string) {
 
+    if (!strCPF)
+        return false;
+    
     strCPF = strCPF.replace(/[^\d]/g, ""); //remove caracteres repetidos
 
     let Soma;

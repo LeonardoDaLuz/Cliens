@@ -20,30 +20,17 @@
       }
     },
     {
-      "id": 21,
-      "nome": "Ryan Dietrich",
-      "cpf": "11643066269",
-      "email": "Eleonore51@yahoo.com",
-      "endereco": {
-        "cep": 5956083,
-        "rua": "Ottis Radial",
-        "numero": 578,
-        "bairro": "Avon",
-        "cidade": "South Arturo"
-      }
-    },
-    {
-      "id": 23,
       "nome": "Rebecca Bode DDS",
-      "cpf": "20817833390",
+      "cpf": "208.178.333-90",
       "email": "Marcelino.Jenkins@gmail.com",
       "endereco": {
-        "cep": 843527,
+        "cep": "84352-756",
         "rua": "Lueilwitz Run",
-        "numero": 846,
-        "bairro": "Borders",
-        "cidade": "Parma"
-      }
+        "numero": 8463,
+        "cidade": "Parma",
+        "bairro": "Borders"
+      },
+      "id": 23
     },
     {
       "id": 24,
@@ -38796,6 +38783,19 @@
         "bairro": "Aeroporto"
       },
       "id": 3004
+    },
+    {
+      "nome": "teste teste",
+      "cpf": "070.303.939-37",
+      "email": "leodluz@yahoo.com",
+      "endereco": {
+        "cep": "83209-332",
+        "rua": "Rua Osvaldo Gonçalves Pereira",
+        "numero": 368,
+        "cidade": "Paranaguá",
+        "bairro": "Jardim Guaraituba"
+      },
+      "id": 3005
     }
   ]
 }
