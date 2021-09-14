@@ -54,7 +54,7 @@ function Listagem() {
                         </SearchDetail>
                     }
                 </div>
-
+                
                 <Table lista={selectedClients} status={clientsState.status} loadCompleted={clientsState.loadCompleted} />
 
             </Container>

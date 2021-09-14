@@ -8,6 +8,8 @@ import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { RootState } from "../../store";
 import { useHistory } from "react-router";
+import { ReactComponent as CliensLogo } from './../../assets/svg/cliens_icon.svg';
+import { ReactComponent as CliensLogo2 } from './../../assets/svg/cliens_icon_3.svg';
 
 export default function Header() {
 
@@ -22,7 +24,9 @@ export default function Header() {
         <HeaderContainer>
             <LogoContainer>
                 <Link to='/customers'>
-                <Icon src={assets.cliens_icon} width='120px'  height='50px' />
+
+                    <CliensLogo className='onlyDesktop' width='120px' height='42px' />
+                    <CliensLogo2 className='onlyMobile' width='42px'  height='42px' />      
                 </Link>
             </LogoContainer>
             <SearchInput />

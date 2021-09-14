@@ -17,6 +17,7 @@ export const GlobalStyle = createGlobalStyle`
         color: #212529;
         text-align: left;
         overflow-x: hidden;
+        width: 100%;
     }
 
     *, *::before, *::after {
@@ -84,6 +85,18 @@ export const GlobalStyle = createGlobalStyle`
 
     button {
         cursor: pointer!important;
+    }
+
+    .onlyMobile {
+        @media(min-width: 600px) {
+            display: none;
+        }
+    }
+
+    .onlyDesktop {
+        @media(max-width: 600px) {
+            display: none;
+        }
     }
 `;
 

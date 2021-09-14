@@ -4,41 +4,36 @@ import assets from "../../assets";
 
 export const HeaderContainer = styled.div`
     display: flex;
-    justify-content: center;
+ //   position: -webkit-sticky; /* Safari */
+ // position: sticky;
+  top: 0;
+  z-index: 30;
 `;
 
 export const SkewBlock = styled.div`
-    position: relative;
-    padding-right: 20px;
-    padding-left: 20px;
-    &:before {
-        content: "";
-        position: absolute;
-        display: block;
-        left: 0px;
-        z-index:-1;
-        transform: skewX(-45deg);
-        height: 100%;
-        width: 100%;
-        background-color: white;
-        box-shadow: 2px 3px 3px rgba(0,0,0,0.5);
-    }
+
 
 `;
 
 export const LogoContainer = styled(SkewBlock)`
-    flex: 0.2 0 200px;
-    margin-left: -20px;
-    padding-left: 40px;
-    z-index: 5;
-        &:before {
-        background-color: white;
 
+   padding: 3px 5px 0px 5px;
+    flex-shrink: 0;
+    background-color: ${colorTheme.tertiary};
+    z-index: 5;
+
+    a {
+        display: block;
+        margin-bottom: -5px;
     }
+
+
+
 `;
 
 export const SearchContainer = styled(SkewBlock)`
     flex: 1 1 400px;
+    background-color: ${colorTheme.secondary};
 
     &:before {
         background-color: ${colorTheme.secondary};
@@ -46,13 +41,13 @@ export const SearchContainer = styled(SkewBlock)`
     }
 
     form {
-
         display: flex;
         height: 50px;
         z-index: 4;
 
         button {
-            flex: 0 1 60px;
+            width: 48px;
+  
             border: none;
             background: transparent url(${assets.search_icon}) no-repeat center center;
             background-size: 65%;
@@ -60,6 +55,7 @@ export const SearchContainer = styled(SkewBlock)`
 
         input {
             flex: 1 1 40px;
+            width: 50px;
             border: none;
             background-color: ${colorTheme.secondary.darken(0.15)};
             margin: 5px;
@@ -75,9 +71,16 @@ export const SearchContainer = styled(SkewBlock)`
 `;
 
 export const MenuContainer = styled(SkewBlock)`
-    flex: 1 1 400px;
+    flex: 1 1 auto;
+
+    @media(min-width: 600px) {
+        /*
     margin-right: -30px;
     padding-right: 30px;
+    */
+    }
+    background-color: ${colorTheme.primary};
+    box-shadow: 2px 0px 2px rgba(0,0,0,0.3);
     padding-left: 0px;
     height: 50px;
     display: flex;
@@ -99,6 +102,14 @@ export const MenuContainer = styled(SkewBlock)`
         text-align: center;
     }
 
+    button {
+        color: white;
+        background-color: transparent;
+        outline: none;
+        border: none;
+    }
+
+    /*
     a:before {
         content: '';
         position: absolute;
@@ -110,7 +121,7 @@ export const MenuContainer = styled(SkewBlock)`
         background-color: ${colorTheme.primary};
         box-shadow: 2px 0px 2px rgba(0,0,0,0.3);
         z-index: -1;
-    }
+    }*/
     
     a:hover:before {
    

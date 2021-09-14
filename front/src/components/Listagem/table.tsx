@@ -26,9 +26,10 @@ function Table({ lista, loadCompleted }: props) {
                 <tr>
                     <th>ID</th>
                     <th>Nome</th>
-                    <th>CPF</th>
-                    <th>E-mail</th>
-                    <th>Cidade</th>
+                    <th className='onlyDesktop'>CPF</th>
+                    <th className='onlyDesktop'>E-mail</th>
+                    <th className='onlyDesktop'>Cidade</th>
+                    <th className='onlyMobile'>Dados</th>
                     <th style={{ width: '140px' }}>Opções </th>
                 </tr>
             </thead>
@@ -39,9 +40,10 @@ function Table({ lista, loadCompleted }: props) {
                             <tr >
                                 <td>{item['id']}</td>
                                 <td><b>{item["nome"]}</b></td>
-                                <td>{formatCPF(item["cpf"])} </td>
-                                <td>{item["email"].toLocaleLowerCase()} </td>
-                                <td>{item["endereco"]['cidade']} </td>
+                                <td className='onlyDesktop'>{formatCPF(item["cpf"])} </td>
+                                <td className='onlyDesktop'>{item["email"].toLocaleLowerCase()} </td>
+                                <td className='onlyDesktop'>{item["endereco"]['cidade']} </td>
+                                <td className='onlyMobile'>{formatCPF(item["cpf"])} </td>
                                 <td width='140px'>
                                     <Button onClick={(e) => {
                                         dispatch(loadCustomerSucess({ id: item.id, customer: item }));

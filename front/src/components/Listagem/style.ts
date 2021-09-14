@@ -31,25 +31,48 @@ export const SearchDetail = styled.div`
 export const TableContainer = styled.table`
     width: 100%;
     border-spacing: 0;
-    overflow: hidden;
     border-radius: 5px;
-    box-shadow:  0px 4px 4px rgba(0,0,0,0.4);
-    background-color: white;
-     border-collapse: collapse;
+
+    color: white;
+    border-collapse: collapse;
+    position: relative;
+
+
     thead {
-        background-color: ${colorTheme.secondary.darken(0.1)};
-        box-shadow:  0px 3px 5px rgba(0,0,0,0.4);
-        z-index:5;
-        color: white;   
-        position:relative;        
+        tr {
+        background-color:  white;
+        }
+          
     }
 
     th {
         padding: 5px 20px 5px 20px;
+        background-color: ${colorTheme.secondary.darken(0.1)};
+        position: sticky;
+        top: 0px;
+        z-index: 2;
         
+
+        @media(max-width: 800px) {
+            padding: 3px 6px 3px 6px;
+        }
+
+        &:first-child {
+            border-radius: 5px 0px 0px 0px;
+        }
+
+        &:last-child {
+            border-radius: 0px 5px 0px 0px;
+        }
     }
+
     td {
         padding: 8px 20px 8px 20px;
+
+        @media(max-width: 800px) {
+            padding: 3px 6px 3px 6px;
+        }
+
         color: ${colorTheme.title};
         font-weight: 500;
         letter-spacing: 0.5px;
@@ -67,14 +90,17 @@ export const TableContainer = styled.table`
 
 
     tr:last-child>td {
-        padding-bottom: 20px;
+     //   padding-bottom: 20px;
 
     }
 
     tbody {
-
+        background-color: white;
         padding: 15px;
+        box-shadow:  0px 3px 5px rgba(0,0,0,0.4);
+        z-index:5;
 
+        
         tr:nth-child(2n) {
 
             td {
@@ -94,6 +120,8 @@ export const TableContainer = styled.table`
     tfoot {
         text-align: center;
     }
+
+
 `;
 
 export const BottomLeftLoaderWheel = styled(LoaderWheel)`

@@ -5,6 +5,8 @@ import assets from "../../assets";
 import { Link} from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { logout } from "../../store/user";
+import { ReactComponent as SandwichIcon } from '../../assets/svg/sandwich_icon.svg';
+
 
 function Menu() {
 
@@ -12,18 +14,21 @@ function Menu() {
 
     return (
         <MenuContainer>
-            <Link to='/add' style={{ zIndex: 2 }}>
+            <Link to='/add' className='onlyDesktop' style={{ zIndex: 2 }}>
                 <Icon src={assets.adicionar_cliente_icon} width='20px' height='20px' />
                 Adicionar
             </Link>
-            <Link to='/customers' style={{ zIndex: 1 }}>
+            <Link to='/customers'  className='onlyDesktop' style={{ zIndex: 1 }}>
                 <Icon src={assets.listagem_icon} width='20px' height='20px' />
                 listagem
             </Link>
-            <a href='#' onClick={() => dispatch(logout())} style={{ zIndex: 0 }}>
+            <a href='#' className='onlyDesktop' onClick={() => dispatch(logout())} style={{ zIndex: 0 }}>
                 <Icon src={assets.login_icon} width='20px' height='20px' />
                 Sair
             </a>
+            <button className='onlyMobile'>
+                <SandwichIcon width='42px' height='42px' />
+            </button>
         </MenuContainer>
     );
 }
