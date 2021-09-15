@@ -98,6 +98,12 @@ export const GlobalStyle = createGlobalStyle`
             display: none;
         }
     }
+
+    .onlyLg {
+        @media(max-width: 992px) {
+            display: none;
+        }
+    }
 `;
 
 interface IconProps {

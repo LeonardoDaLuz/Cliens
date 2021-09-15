@@ -5,7 +5,7 @@ import assets from "../../assets";
 export const HeaderContainer = styled.div`
     display: flex;
  //   position: -webkit-sticky; /* Safari */
- // position: sticky;
+  position: sticky;
   top: 0;
   z-index: 30;
 `;
@@ -71,63 +71,63 @@ export const SearchContainer = styled(SkewBlock)`
 `;
 
 export const MenuContainer = styled(SkewBlock)`
-    flex: 1 1 auto;
 
-    @media(min-width: 600px) {
-        /*
-    margin-right: -30px;
-    padding-right: 30px;
-    */
-    }
     background-color: ${colorTheme.primary};
-    box-shadow: 2px 0px 2px rgba(0,0,0,0.3);
-    padding-left: 0px;
-    height: 50px;
-    display: flex;
-
-    &:before {
-        background-color: ${colorTheme.primary};
-
+ 
+    nav {
+        padding: 0px;
+        display: flex;
+        height: 100%;
     }
 
     a {
-        flex: 1 1 50px;
-        position: relative;                
+        padding: 10px;
         color: white;
-        font-weight: 600;
-        letter-spacing: 2px;
-        width: 100%;  
+        font-weight: bold;
         text-decoration: none;
-        line-height: 50px;
-        text-align: center;
+
+        display: flex;
+        align-items: center;
+   
     }
 
+    a:hover {
+        text-decoration: none;
+        background-color: ${colorTheme.primary.darken(0.2)}
+    }
+
+
     button {
+        display: none;
         color: white;
         background-color: transparent;
         outline: none;
         border: none;
     }
 
-    /*
-    a:before {
-        content: '';
-        position: absolute;
-        top: 0px;
-        display: block;
-        width: 100%;
-        height: 100%;        
-        transform: skewX(-45deg);        
-        background-color: ${colorTheme.primary};
-        box-shadow: 2px 0px 2px rgba(0,0,0,0.3);
-        z-index: -1;
-    }*/
-    
-    a:hover:before {
-   
-        background-color: ${colorTheme.primary.lighten(0.1)};
-    }
+    @media(max-width: 900px) {
+        button {
+            display: block;
+        }
 
+        nav {
+            position: absolute;
+            right: 0px;
+            display: none;
+
+            background-color: ${colorTheme.primary};
+
+            border-radius: 10px;
+
+            a {
+                display: block;
+            }
+        }
+
+        nav.show {
+            display: block;
+        }
+    }
 
     
 

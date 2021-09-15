@@ -48,7 +48,7 @@ export const TableContainer = styled.table`
     th {
         padding: 5px 20px 5px 20px;
         background-color: ${colorTheme.secondary.darken(0.1)};
-        position: sticky;
+      
         top: 0px;
         z-index: 2;
         
