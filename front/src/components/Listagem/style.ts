@@ -18,7 +18,8 @@ export const ListagemContainer = styled.div`
         vertical-align: middle;
     }
 
-    padding-bottom: 100px;
+    padding: 5px 5px 100px 5px;
+
 `;
 
 export const SearchDetail = styled.div`
@@ -85,7 +86,11 @@ export const TableContainer = styled.table`
                 0px 5px 5px black;
             ;
         }
+
+
     }
+
+
 
 
 
@@ -112,6 +117,27 @@ export const TableContainer = styled.table`
                 border: none;
                 border-bottom: 1px solid ${colorTheme.secondary.lighten(0.1)};
             }
+        }
+
+        .row-options {
+            width: 10px;
+            padding-top: 8px;
+
+            button {
+                margin-bottom: 6px;
+            }
+
+            @media(min-width: 992px) {
+                
+                width:140px;
+
+                button {
+                margin-bottom: 0px;
+                }
+            }
+
+    
+
         }
 
 

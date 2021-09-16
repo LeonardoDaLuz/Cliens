@@ -26,9 +26,11 @@ export const EditarStyles = styled.div`
  
     }
 
-    fieldset::after {
-        content: '';
-        flex-grow: 1000000000;
+    @media(min-width: 900px) {
+        fieldset::after {
+            content: '';
+            flex-grow: 1000000000;
+        }
     }
 
     h1 {

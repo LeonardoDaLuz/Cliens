@@ -29,8 +29,8 @@ function Table({ lista, loadCompleted }: props) {
                     <th className='onlyDesktop'>CPF</th>
                     <th className='onlyDesktop'>E-mail</th>
                     <th className='onlyDesktop'>Cidade</th>
-                    <th className='onlyMobile'>Dados</th>
-                    <th style={{ width: '140px' }}>Opções </th>
+                    <th className='onlyMobile'>CPF, Email e Cidade</th>
+                    <th className='row-options'>Opções </th>
                 </tr>
             </thead>
             <tbody>
@@ -40,11 +40,20 @@ function Table({ lista, loadCompleted }: props) {
                             <tr >
                                 <td>{item['id']}</td>
                                 <td><b>{item["nome"]}</b></td>
-                                <td className='onlyDesktop'>{formatCPF(item["cpf"])} </td>
-                                <td className='onlyDesktop'>{item["email"].toLocaleLowerCase()} </td>
+                                <td className='onlyDesktop whitespace-nowrap'>{formatCPF(item["cpf"])} </td>
+                                <td className='onlyDesktop text-excerpt'>{item["email"].toLocaleLowerCase()} </td>
                                 <td className='onlyDesktop'>{item["endereco"]['cidade']} </td>
-                                <td className='onlyMobile'>{formatCPF(item["cpf"])} </td>
-                                <td width='140px'>
+                                <td className='onlyMobile'>
+                                    {formatCPF(item["cpf"])
+                                    }
+                                    <div className='text-excerpt'>
+                                        {item["email"].toLocaleLowerCase()}
+                                    </div>
+                                    <div className='text-excerpt'>
+                                        {item["endereco"]['cidade']}
+                                    </div>
+                                </td>
+                                <td className='row-options'>
                                     <Button onClick={(e) => {
                                         dispatch(loadCustomerSucess({ id: item.id, customer: item }));
                                         history.push('/edit/' + item.id);

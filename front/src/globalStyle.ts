@@ -88,13 +88,13 @@ export const GlobalStyle = createGlobalStyle`
     }
 
     .onlyMobile {
-        @media(min-width: 600px) {
+        @media(min-width: 992px) {
             display: none;
         }
     }
 
     .onlyDesktop {
-        @media(max-width: 600px) {
+        @media(max-width: 992px) {
             display: none;
         }
     }
@@ -104,6 +104,22 @@ export const GlobalStyle = createGlobalStyle`
             display: none;
         }
     }
+
+    .whitespace-nowrap {
+        white-space: nowrap;
+    }
+
+    .text-excerpt {  
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 280px;
+
+        @media(max-width: 992px) {
+            max-width: 210px;
+        }
+    }
+
 `;
 
 interface IconProps {

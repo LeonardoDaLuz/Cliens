@@ -1,23 +1,23 @@
 {
   "usuarios": [
     {
-      "email": "test@email.com",
+      "email": "admin@email.com",
       "password": "123456"
     }
   ],
   "clientes": [
     {
-      "id": 19,
       "nome": "Jodi Mertz",
-      "cpf": "64585314199",
+      "cpf": "645.853.141-99",
       "email": "Alba.Durgan@gmail.com",
       "endereco": {
-        "cep": 3821996,
+        "cep": "38219-966",
         "rua": "Zetta Pines",
         "numero": 816,
-        "bairro": "Cambridgeshire",
-        "cidade": "Lake Lexus"
-      }
+        "cidade": "Lake Lexus",
+        "bairro": "Cambridgeshire"
+      },
+      "id": 19
     },
     {
       "id": 24,
