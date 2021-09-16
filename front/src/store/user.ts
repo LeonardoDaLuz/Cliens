@@ -4,6 +4,7 @@ import { Action } from "redux";
 import { AppDispatch, AppThunk, RootState } from '.';
 import config from '../config';
 
+
 export interface UserState {
     loginStatus: 'NOT_LOGGED' | 'LOGGING' | 'LOGGED' | 'LOGIN_FAILURE' | 'INCORRECT_LOGIN_OR_PASSWORD',
     userLogin: string,
@@ -19,9 +20,9 @@ export interface UserAction {
 }
 
 const initialState: UserState = {
-    loginStatus: 'NOT_LOGGED',
-    userLogin: '',
-    token: ''
+    loginStatus: localStorage.getItem('login')?'LOGGED': 'NOT_LOGGED',
+    userLogin: localStorage.getItem('login'),
+    token: localStorage.getItem('token')
 }
 
 const userSlice = createSlice({
@@ -51,6 +52,8 @@ const userSlice = createSlice({
         logout: (state, action: PayloadAction<UserAction>) => {
             state.loginStatus = 'NOT_LOGGED';
             state.token = '';
+            localStorage.setItem('login', '');
+            localStorage.setItem('token', '');
         }
     }
 })

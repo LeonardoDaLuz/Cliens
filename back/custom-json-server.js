@@ -13,7 +13,6 @@ server.use(express.urlencoded({ extended: true }))
 server.use(jsonServer.bodyParser)
 
 server.post('/login', (req, res, next) => {
-    console.log(req.body);
 
     let result = router.db.get('usuarios').find({ email: req.body.login , password: req.body.password }).value();
 
