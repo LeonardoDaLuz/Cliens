@@ -7,6 +7,7 @@ import { mergePathWithQueryAndQuery } from '../utils/mergePathWithQueryAndQuery'
 import { waitForSeconds } from '../utils/waitForSeconds';
 import { FormularyType } from '../components/EditarCliente';
 import { useHistory } from 'react-router';
+import { logout } from './user';
 
 export type ClientsState = {
     readonly status: 'idle' | 'loading' | 'loaded' | 'fail',
@@ -124,8 +125,8 @@ const customersSlice = createSlice({
             state.pointer = 0;
         },
         previewDeleteCustomer: (state: Mutable<ClientsState>, action: PayloadAction<ClientsAction>) => {
-            state.data[state.currentKey].forEach((item: Client, index: number )=> {
-                if(item.id===action.payload.id) {
+            state.data[state.currentKey].forEach((item: Client, index: number) => {
+                if (item.id === action.payload.id) {
                     state.data[state.currentKey].splice(index, 1);
                 }
             })
@@ -165,7 +166,7 @@ export const infiniteCustomerLoaderThunk = (path = '', query = '', quantity = 30
 
 export async function loadMoreClients(dispatch: AppDispatch, getState: () => RootState) {
 
- //   let customersState = getState().customers;
+    //   let customersState = getState().customers;
     const rootState = getState();
     let customersState = rootState.customers;
     const user = rootState.user;
@@ -175,25 +176,19 @@ export async function loadMoreClients(dispatch: AppDispatch, getState: () => Roo
         key: customersState.currentKey
     }));
 
-    
-
     customersState = getState().customers;
 
-    const result = await fetch(customersState.currentUrl, {
+    const response = await fetch(customersState.currentUrl, {
         headers: {
             'x-access-token': user.token,
         }
     });
 
-
-    if (result.status === 200) {
-
-        const data = await result.json();
+    try {
+        const data = await response.json();
 
         if ('auth' in data) {
-               
-            dispatch(clientSearchFailure({ error: data['message'] }));
-            await waitForSeconds(2)
+            dispatch(logout());
         } else {
             dispatch(customerLoaderSuccess({
                 payload: data,
@@ -203,11 +198,10 @@ export async function loadMoreClients(dispatch: AppDispatch, getState: () => Roo
                 quantity: customersState.currentQuantity
             }))
         }
-
-    } else {
-        dispatch(clientSearchFailure({ error: result.status }));
+    } catch (e) {
+        dispatch(clientSearchFailure({ error: { status: response.status, e } }));
         await waitForSeconds(2)
-    }        
+    }
 }
 
 

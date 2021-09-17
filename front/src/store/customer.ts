@@ -5,6 +5,7 @@ import config from '../config';
 import { waitForSeconds } from '../utils/waitForSeconds';
 import { FormularyType } from '../components/EditarCliente';
 import { previewDeleteCustomer } from './customers';
+import { logout } from './user';
 
 export type CustomerState = {
     readonly status: 'idle' | 'loading' | 'loaded' | 'loading_failed' | 'updating' | 'updated' | 'update_failed' | 'deleting' | 'deleted' | 'deleting_failed',
@@ -126,23 +127,22 @@ export function loadCustomer(id: string): AppThunk {
             }
         });
 
-        if (response.status === 200) {
-            try {
-                const data = await response.json();
+        try {
+            const data = await response.json();
 
-                if (data.id) {
-                    dispatch(loadCustomerSucess({ id, customer: data, url }));
-
-                } else {
-                    dispatch(loadCustomerFailure({ id, error: 'strange answer ', url }));
-                }
-
-            } catch (e) {
-                dispatch(loadCustomerFailure({ id, error: "Failed to parse answer :" + e, url }));
+            if ('auth' in data) {
+                dispatch(logout());
             }
-        } else {
-            dispatch(loadCustomerFailure({ id, error: response.status, url }))
+            else if ('id' in data) {
+                dispatch(loadCustomerSucess({ id, customer: data, url }));
+            }
+            else {
+                dispatch(loadCustomerFailure({ id, error: 'strange answer ', url }));
+            }
+        } catch (e) {
+            dispatch(loadCustomerFailure({ id, error: { status: response.status, e }, url }))
         }
+
     }
 }
 

@@ -33,18 +33,16 @@ export const TableContainer = styled.table`
     width: 100%;
     border-spacing: 0;
     border-radius: 5px;
-
     color: white;
     border-collapse: collapse;
     position: relative;
     background-color: white;
     box-shadow:  0px 3px 5px rgba(0,0,0,0.4);
-    
+
     thead {
         tr {
         background-color:  white;
-        }
-          
+        }        
     }
 
     th {
@@ -87,13 +85,7 @@ export const TableContainer = styled.table`
                 0px 5px 5px black;
             ;
         }
-
-
     }
-
-
-
-
 
     tr:last-child>td {
      //   padding-bottom: 20px;
@@ -103,9 +95,7 @@ export const TableContainer = styled.table`
     tbody {
 
         padding: 15px;
-
         z-index:5;
-
         
         tr:nth-child(2n) {
 
@@ -136,19 +126,12 @@ export const TableContainer = styled.table`
                 margin-bottom: 0px;
                 }
             }
-
-    
-
-        }
-
-
+         }
     }
 
     tfoot {
         text-align: center;
     }
-
-
 `;
 
 export const BottomLeftLoaderWheel = styled(LoaderWheel)`
