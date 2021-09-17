@@ -4,6 +4,6 @@ Simples sistema de cadastro de clientes usando React, Redux Toolkit, Styled Comp
 
 <img src="https://github.com/LeonardoDaLuz/Cliens/blob/main/outros/GravacaoDemonstracaoCliens1.0.gif?raw=true" />
 
-<div style="text-align: center">
+<center>
 <img src="https://github.com/LeonardoDaLuz/Cliens/blob/main/outros/responsividadeScreenshot.jpeg?raw=true" />
-</div>
+</center>
