@@ -1,8 +1,8 @@
 import { SearchContainer } from "./style";
 import { useHistory } from "react-router-dom";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useAppDispatch } from "../../store/hooks";
-
+import PubSub from 'pubsub-js'
 
 export default function SearchInput() {
 
@@ -11,6 +11,12 @@ export default function SearchInput() {
 
     const dispatch = useAppDispatch();
     const history = useHistory();
+
+    useEffect(() => {
+        let token = PubSub.subscribe('clear_search_input', () => { setState('') });
+
+        return () => PubSub.unsubscribe(token);
+    }, [])
 
     function onSubmit(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault()

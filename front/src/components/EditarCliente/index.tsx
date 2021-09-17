@@ -50,6 +50,8 @@ export default function EditarCliente() {
 
     const history = useHistory();
 
+    const location = useLocation();
+
     const { id } = useParams<{ id: string }>();
 
     useEffect(() => {
@@ -128,7 +130,7 @@ export default function EditarCliente() {
                 await dispatch(updateCustomer(-1, values));
             }
 
-            history.push('/');
+            history.push('/'+location.search);
             // dispatch(loginThunk(values.login, values.password));
         }
     })

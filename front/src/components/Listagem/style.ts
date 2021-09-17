@@ -37,8 +37,9 @@ export const TableContainer = styled.table`
     color: white;
     border-collapse: collapse;
     position: relative;
-
-
+    background-color: white;
+    box-shadow:  0px 3px 5px rgba(0,0,0,0.4);
+    
     thead {
         tr {
         background-color:  white;
@@ -100,9 +101,9 @@ export const TableContainer = styled.table`
     }
 
     tbody {
-        background-color: white;
+
         padding: 15px;
-        box-shadow:  0px 3px 5px rgba(0,0,0,0.4);
+
         z-index:5;
 
         

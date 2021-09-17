@@ -6,7 +6,7 @@ import { formatCPF } from "../../utils/formatCpf";
 import { Client, infiniteLoaderPointerReset } from "../../store/customers";
 import { deleteCustomerThunk, loadCustomerSucess } from "../../store/customer";
 import { useAppDispatch } from "../../store/hooks";
-import { useHistory } from "react-router";
+import { useHistory, useLocation } from "react-router";
 
 type props = {
     lista: Client[],
@@ -19,7 +19,9 @@ function Table({ lista, loadCompleted }: props) {
 
     const dispatch = useAppDispatch();
     const history = useHistory();
+    const location = useLocation();
 
+    
     return (
         <TableContainer>
             <thead>
@@ -56,7 +58,7 @@ function Table({ lista, loadCompleted }: props) {
                                 <td className='row-options'>
                                     <Button onClick={(e) => {
                                         dispatch(loadCustomerSucess({ id: item.id, customer: item }));
-                                        history.push('/edit/' + item.id);
+                                        history.push('/edit/' + item.id+location.search);
                                     }}>
                                         <Icon src={assets.edit_icon} height='16px' width='16px' />
                                     </Button>
