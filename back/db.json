@@ -3569,17 +3569,17 @@
       }
     },
     {
-      "id": 297,
-      "nome": "Santiago Runolfsdottir",
-      "cpf": "06226553707",
+      "nome": "Santiago Runolfsdottir Vanhouser",
+      "cpf": "070.303.939-37",
       "email": "Tyler92@hotmail.com",
       "endereco": {
-        "cep": 6409281,
-        "rua": "Cindy Road",
+        "cep": "83209-332",
+        "rua": "Rua Osvaldo Gonçalves Pereira",
         "numero": 123,
-        "bairro": "Borders",
-        "cidade": "Reginaldview"
-      }
+        "cidade": "Paranaguá",
+        "bairro": "Jardim Guaraituba"
+      },
+      "id": 297
     },
     {
       "id": 298,
@@ -8210,17 +8210,17 @@
       }
     },
     {
-      "id": 654,
-      "nome": "Regina Deckow I",
-      "cpf": "41022211587",
+      "nome": "Regina Deckow Honwolf",
+      "cpf": "070.303.939-37",
       "email": "Lessie_Wintheiser18@gmail.com",
       "endereco": {
-        "cep": 622471,
-        "rua": "Robel Circle",
+        "cep": "83209-332",
+        "rua": "Rua Osvaldo Gonçalves Pereira",
         "numero": 615,
-        "bairro": "Avon",
-        "cidade": "North Hollis"
-      }
+        "cidade": "Paranaguá",
+        "bairro": "Jardim Guaraituba"
+      },
+      "id": 654
     },
     {
       "id": 655,
@@ -25136,17 +25136,17 @@
       }
     },
     {
-      "id": 1956,
       "nome": "Reginald Schoen",
-      "cpf": "91155871260",
+      "cpf": "911.558.712-60",
       "email": "Kylie_Bayer9@gmail.com",
       "endereco": {
-        "cep": 9654015,
+        "cep": "96540-156",
         "rua": "Orin Mount",
         "numero": 823,
-        "bairro": "Berkshire",
-        "cidade": "Lake Abnerborough"
-      }
+        "cidade": "Lake Abnerborough",
+        "bairro": "Berkshire"
+      },
+      "id": 1956
     },
     {
       "id": 1957,
@@ -34990,17 +34990,17 @@
       }
     },
     {
-      "id": 2714,
       "nome": "Regina Lesch",
-      "cpf": "25350165402",
+      "cpf": "253.501.654-02",
       "email": "Unique_Pacocha61@yahoo.com",
       "endereco": {
-        "cep": 7733445,
+        "cep": "77334-453",
         "rua": "Orn Mountain",
         "numero": 937,
-        "bairro": "Bedfordshire",
-        "cidade": "North Brennonberg"
-      }
+        "cidade": "North Brennonberg",
+        "bairro": "Bedfordshire"
+      },
+      "id": 2714
     },
     {
       "id": 2715,
@@ -38809,6 +38809,32 @@
         "bairro": "Jardim Guaraituba"
       },
       "id": 3007
+    },
+    {
+      "nome": "Novo cliente ",
+      "cpf": "070.303.939-37",
+      "email": "asoo@gmail.com",
+      "endereco": {
+        "cep": "83209-000",
+        "rua": "Avenida Bento Munhoz da Rocha Neto",
+        "numero": 123456,
+        "cidade": "Paranaguá",
+        "bairro": "Aeroporto"
+      },
+      "id": 3008
+    },
+    {
+      "nome": "fulano de tal",
+      "cpf": "070.303.939-37",
+      "email": "osdo@email.com",
+      "endereco": {
+        "cep": "83209-000",
+        "rua": "Avenida Bento Munhoz da Rocha Neto",
+        "numero": 123456789,
+        "cidade": "Paranaguá",
+        "bairro": "Aeroporto"
+      },
+      "id": 3009
     }
   ]
 }
