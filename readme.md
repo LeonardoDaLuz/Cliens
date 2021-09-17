@@ -13,5 +13,5 @@ Simples sistema de cadastro de clientes usando React, Redux Toolkit, Styled Comp
 
 ## Como executar
 
-1) Inicie o servidor na pasta back chamando node custom-json-server.js
-2) Inicie o front na pasta front chamando npm start ou npm run build para gerar uma build.
+1) Inicie o servidor na pasta back chamando: node custom-json-server.js
+2) Inicie o front na pasta front chamando: npm start ou npm run build para gerar uma build.
